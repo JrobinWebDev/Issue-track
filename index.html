@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <title>Issue Track</title>
+    <link rel="stylesheet" href="style.css">
+</head>       
+<body>
+    
+    <!--==============================Logo=============================-->
+    
+    <div class="container">
+        <div class="title">
+            <figure>
+                <img src="/icons/cogs-icon.png" id="logo">
+            </figure>
+                <h1 >Issue Track</h1> 
+                <h3>The simple issue tracker</h3>
+        </div>
+        
+        <!--==============================Form=============================-->
+        
+        <div class="wrapper">
+            <div class="issue-form">
+                <form id="issueInputForm">
+                    <p>
+                        <label>Assinged To</label>
+                        <input id="issueAssignedToInput" type="text" placeholder="Individual/Team responsible" required>
+                    </p>
+                    <p>
+                        <label>Description</label>
+                        <textarea id="issueDescInput"  placeholder="Issue info..." rows="5" required></textarea>
+                    </p>
+                    <p>
+                        <label>Risk</label>
+                        <select id="issueSeverityInput">
+                            <option>Low</option>
+                            <option>Medium</option>
+                            <option>High</option>
+                        </select>
+                    </p>
+                    <p>
+                        <button type="submit">Submit</button>
+                    </p>
+                    <div id="count"></div>
+                </form>              
+            </div>
+                <nav>
+                    <ul>
+                        <li class="dropdown-tag">Filter Issues:
+                        </li>
+                        <li>
+                            <div id="issueFilter" class="dropdown-menu">
+                                <button id="filterText" class="drop-button">All</button>
+                                <div id="filterDropdown" class="dropdown-content">
+                                    <a id="seeAll">All</a>
+                                    <a id="seeResolved">Resolved</a>
+                                    <a id="seeUnresolved">Unresolved</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li><button id="deleteResolved" class="delete-resolved">Delete Resolved</button>
+                        </li>
+                    </ul>
+                </nav>    
+                <div id="issue" class="all">
+            </div>
+        </div>
+        
+        <!--==================================Issues====================================-->
+    
+    </div>
+    
+       <!--==============================HandlebarsTemplate=============================-->
+       
+      <script id="issues-template" type="text/x-handlebars-template">
+
+        {{#this}}
+        <div class="issue">
+            <figure class="media-left">
+                <p>
+                    <img src="/icons/cogs-icon.png" class="img">
+                </p>
+            </figure>
+            <div id={{id}} class="issue-content">
+                <div class="content">
+                    <p>
+                        <strong>Assigned to:</strong> &nbsp {{assignedTo}}
+                        <p>
+                            <strong>Issue Status:</strong> &nbsp {{statusText}}
+                        </p>
+                        <p>
+                            <strong>Issued on:</strong> &nbsp {{date}}
+                        </p>
+                        <div class="description">
+                            {{description}}
+                        </div>
+                    </p>
+                </div>
+                {{#if status}}
+                        <button id="statusButton" type="button" disabled class="issue-closed-true">Close Issue</button>{{else}}
+                        <button id="statusButton" class="issue-closed">Close Issue</button>
+                        {{/if}}
+                        <button id="deleteButton" class="issue-delete">Delete Issue</button>
+                <div class="id-severity">
+                    <img src="/icons/sign-warning-icon.png" class="img-triangle">
+                    <strong class="severity"> {{severity}}</strong>
+                    <h2 class="id">Issue ID: <b>{{id}}</b></h2>
+                </div>
+            </div>
+        </div>
+        {{/this}}
+
+      </script>
+       
+        <!--==============================Script tags=============================-->
+       
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+      <script src="main.js"></script>
+           
+   </body>
+</html>

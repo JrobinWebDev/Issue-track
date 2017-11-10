@@ -1,0 +1,311 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background: white;
+    line-height: 1.5;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    padding: 1em;
+}
+
+.container{
+    max-width: 1170px;
+    min-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+}
+
+.title h1, .title h3{
+    text-align: center;
+    color: darkgrey;
+    margin-top: -30px;
+}
+
+.title h3{
+    color: #BADA55;
+}
+
+#logo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.issue-form{
+    border: 2px solid #BADA55;
+    background: whitesmoke;
+    width: 80%;
+    margin: auto;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.wrapper > *{
+    padding: 1em;
+}
+
+nav{
+    width: 60%;
+    margin: auto;
+    margin-top: 10px;
+    border: 2px solid #BADA55;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: whitesmoke;
+    position: relative;
+
+}
+
+nav ul {
+    padding: 0;
+    margin: auto;
+    list-style: none;
+    text-align: center;
+}
+
+nav li{
+    display: inline;
+    text-align: center;
+}
+
+/*FORM STYLES*/
+
+.issue-form label{
+    display: block;
+}
+
+.issue-form p{
+    margin-left: 40px;
+}
+
+.issue-form button, .issue-form input, issue-form textarea{
+    padding: 1em;
+    border: 1px solid #c9e6ff;
+}
+
+.issue-form select{
+    width: 15%;
+    max-width: 140px;
+}
+
+.issue-form textarea, .issue-form select, .issue-form input{
+    padding: 5px;
+    border: 0.5 px solid grey;
+    border-radius: 5px;
+}
+
+.issue-form textarea, .issue-form input{
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    width: 95%;
+    max-width: 900px;
+}
+
+.issue-form button{
+    margin-top: 10px;
+    background: #BADA55;
+    max-width: auto;
+    cursor: pointer;
+    font-size: 15px;
+    border: 1px solid #BADA55 ;
+    border-radius: 5px;
+}
+
+.issue-form button:hover, issue-form button:focus{
+    background: #BADA55;
+    color: white;
+    outline: 0;
+/*    CHANGE THIS COLOR*/
+    transition: background-color 1s ease-out;
+} 
+
+/*BUTTON NAV*/
+
+.delete-resolved{
+    border-radius: 5px;
+    padding: 11px;
+    font-size: 15.5px;
+    border: 1px solid #FF4136;
+    background: #FF4136;
+    margin-left: 30px;
+    cursor: pointer;
+}
+
+.delete-resolved:hover{
+    color: white;
+}
+
+.dropdown-tag{
+    border-radius: 5px;
+    padding: 11px;
+    font-size: 15px;
+    border: 1px solid #BADA55;
+    background: whitesmoke;
+}
+
+/*DROPDOWN BUTTON*/
+
+.drop-button{
+    background-color: #BADA55;
+    color: black;
+    width: 100px;
+    padding: 11px;
+    font-size: 15.5px;
+    border: 1px solid #BADA55;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.drop-button:hover{
+    color: white;
+}
+
+.dropdown-menu{
+    position: relative;
+    display: inline-block;   
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 100px;
+    border-radius: 5px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 10px 2px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.show {
+    display:block;
+}
+
+/*COUNTER*/
+
+#count{
+    background: #BADA55;
+    max-width: 21%;
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px;
+    display: inline;
+    float: right;
+    margin-top: -48px;
+}
+
+/*ISSUES*/
+
+.img{
+    width: 80px;
+    height: 80px;
+    text-align: left;
+    display: block;
+    margin-bottom: -30px;
+}
+
+.img-triangle{
+    float:left;
+    width: 35px;
+    height: 35px;
+    text-align: left;
+    display: block;
+    margin-left: -29px;
+}
+
+.issue{
+    width: 80%;
+    margin: auto;
+    margin-top: 60px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    border: 2px solid #BADA55;
+    
+}
+
+.issue-content, .id-severity{
+    padding: 1.5em;
+}
+
+.description{
+    border-radius: 5px;
+    border: 3px solid #DDD;
+    min-height: 100px;
+    word-wrap: break-word;
+    padding: 1em;
+}
+
+.issue-delete{
+    border-radius: 5px;
+    padding: 11px;
+    font-size: 12.5px;
+    border: 1px solid #FF4136;
+    background: #FF4136;
+    margin-left: 30px;
+    cursor: pointer;
+}
+
+.issue-delete:hover{
+    color: white;
+}
+
+.issue-closed{
+    margin-left: auto;
+    background-color: #BADA55;
+    color: black;
+    width: 100px;
+    padding: 11px;
+    font-size: 12.5px;
+    border: 1px solid #BADA55;
+    border-radius: 5px;
+    cursor: pointer;    
+}
+
+.issue-closed:hover{
+    color: white;
+}
+
+.issue-closed-true{
+    margin-left: auto;
+    background-color: whitesmoke;
+    color: black;
+    width: 100px;
+    padding: 11px;
+    font-size: 12.5px;
+    border: 1px solid #BADA55;
+    border-radius: 5px;
+    cursor: pointer;  
+}
+
+.id{
+    padding: 1em;
+    display: inline;
+    border: 1px solid #BADA55;
+    border-radius: 5px;
+    font-size: 12.5px;
+    float: right;
+    margin-right: -20px;
+    margin-top: -10px;
+}
+
+.severity{
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 10px;
+   
+}
+
+/*LARGE SCREENS*/
+
+@media(min-width: 700px){
+}
