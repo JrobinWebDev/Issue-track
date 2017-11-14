@@ -71,7 +71,7 @@
             this.elementFilter = document.getElementById("issue");
             this.filterText = document.getElementById("filterText");
             this.dropdownContent = document.getElementsByClassName('dropdown-content');
-            this.deleteResolvedId = document.getElementById("deleteResolved");
+            this.deleteResolvedId = document.getElementById("deleteClosed");
             this.resolved = document.getElementById("seeResolved");
             this.unresolved = document.getElementById("seeUnresolved");
             this.all = document.getElementById("seeAll");
@@ -156,7 +156,7 @@
             this.all.addEventListener("click", this.seeAll.bind(this));
             this.unresolved.addEventListener("click", this.seeUnresolved.bind(this));
             this.resolved.addEventListener("click", this.seeResolved.bind(this));
-            this.deleteResolvedId.addEventListener("click", this.deleteResolved);
+            this.deleteResolvedId.addEventListener("click", this.deleteClosed);
             
             // issue eventHandler added to document in case no issues exist.  
             document.addEventListener("click", function(event){
@@ -211,7 +211,7 @@
             storage.setStorage(issues);
             app.render();
         },
-        deleteResolved: function() {
+        deleteClosed: function() {
             var issues = storage.getStorage();  
             
             // decrement loop removes closed issues.
