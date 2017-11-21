@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
     <title>Issue Track</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>       
 <body>
     
@@ -26,6 +26,15 @@
             <div class="issue-form">
                 <form id="issueInputForm">
                     <p>
+                        <label for="issueCategoryInput">Category</label>
+                        <select id="issueCategoryInput" required>
+                            <option value="">Please select</option>
+                            <option value="issue">Issue</option>
+                            <option value="bug">Bug</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </p>
+                    <p>
                         <label for="issueAssignedToInput">Assinged To</label>
                         <input id="issueAssignedToInput" type="text" placeholder="Individual/Team responsible" required>
                     </p>
@@ -35,10 +44,11 @@
                     </p>
                     <p>
                         <label for="issueSeverityInput">Risk</label>
-                        <select id="issueSeverityInput">
-                            <option>Low</option>
-                            <option>Medium</option>
-                            <option>High</option>
+                        <select id="issueSeverityInput" required>
+                            <option value="">Please select</option>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
                         </select>
                     </p>
                     <p>
@@ -55,7 +65,7 @@
                             <div id="issueFilter" class="dropdown-menu">
                                 <button id="filterText" class="drop-button">All</button>
                                 <div id="filterDropdown" class="dropdown-content">
-                                    <a id="seeAll">All</a>
+                                    <a id="seeAll">All </a>
                                     <a id="seeResolved">Resolved</a>
                                     <a id="seeUnresolved">Unresolved</a>
                                 </div>
@@ -64,13 +74,11 @@
                         <li><button id="deleteClosed" class="delete-closed">Delete Closed</button>
                         </li>
                     </ul>
-                </nav>    
+                </nav> 
+                <!--==================================Issues====================================-->
                 <div id="issue" class="all">
             </div>
         </div>
-        
-        <!--==================================Issues====================================-->
-    
     </div>
     
        <!--==============================HandlebarsTemplate=============================-->
@@ -86,8 +94,13 @@
             </figure>
             <div id={{id}} class="issue-content">
                 <div class="content">
-                    <p>
-                        <strong>Assigned to:</strong> &nbsp {{assignedTo}}
+                    <p> 
+                        <p>
+                            <strong>Category:</strong> &nbsp {{category}}
+                        </p>
+                        <p>
+                            <strong>Assigned to:</strong> &nbsp {{assignedTo}}
+                        </p>
                         <p>
                             <strong>Issue Status:</strong> &nbsp {{statusText}}
                         </p>
