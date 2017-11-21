@@ -61,10 +61,11 @@
             this.template = document.getElementById("issues-template").innerHTML;
             
             // relevant to form.
-            this.issueDesc = document.getElementById('issueDescInput');
-            this.issueSeverity = document.getElementById('issueSeverityInput');
-            this.issueAssignedTo = document.getElementById('issueAssignedToInput');
-            this.inputForm = document.getElementById('issueInputForm');
+            this.issueCategory = document.getElementById("issueCategoryInput");
+            this.issueDesc = document.getElementById("issueDescInput");
+            this.issueSeverity = document.getElementById("issueSeverityInput");
+            this.issueAssignedTo = document.getElementById("issueAssignedToInput");
+            this.inputForm = document.getElementById("issueInputForm");
             
             // relevant to filter nav.
             this.dropDownClass = document.getElementById("filterDropdown");
@@ -122,6 +123,7 @@
             // creation of the issue object.
             var issue = {
                     id: issueId,
+                    category: this.issueCategory.value,
                     description: this.issueDesc.value,
                     severity: this.issueSeverity.value,
                     assignedTo: this.issueAssignedTo.value,
@@ -151,8 +153,8 @@
             // filter nav eventHandlers
             this.filterText.parentElement.addEventListener("click", function(){
                 this.dropDownClass.classList.toggle("show");
-            }.bind(this))
-            // 'this' is bound to the handler otherwise, 'this' would point to the element object that was clicked.
+            }.bind(this));
+
             this.all.addEventListener("click", this.seeAll.bind(this));
             this.unresolved.addEventListener("click", this.seeUnresolved.bind(this));
             this.resolved.addEventListener("click", this.seeResolved.bind(this));
@@ -170,14 +172,14 @@
                     var issueId = clicked.parentElement.id;
                     this.closeIssue(issueId);
                 }
-            }.bind(this))
+            }.bind(this));
             
             // removes filter dropdown menu when user clicks outside of it.
             window.addEventListener("click", function(event){
                 if(!event.target.matches(".drop-button")) {
                     this.dropDownClass.classList.remove("show");
                 }
-            }.bind(this))
+            }.bind(this));
         },
         deleteIssue: function(id) {
             var issues = storage.getStorage();
