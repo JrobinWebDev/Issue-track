@@ -10,8 +10,9 @@ body{
 }
 
 .container{
-    max-width: 1170px;
-    min-width: 500px;
+    max-width: 1000px;
+    min-width: 600px;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
     padding: 1em;
@@ -86,7 +87,7 @@ nav li{
 }
 
 .issue-form select{
-    width: 15%;
+    width: 30%;
     max-width: 140px;
 }
 
@@ -195,13 +196,12 @@ nav li{
 
 #count{
     background: #BADA55;
-    max-width: 21%;
     border-radius: 5px;
     text-align: center;
     padding: 5px;
     display: inline;
     float: right;
-    margin-top: -48px;
+    margin-top: -50px;
 }
 
 /*ISSUES*/
@@ -229,6 +229,7 @@ nav li{
     margin-top: 60px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 5px;
+    background: whitesmoke;
     border: 2px solid #BADA55;
     
 }
@@ -241,6 +242,7 @@ nav li{
     border-radius: 5px;
     border: 3px solid #DDD;
     min-height: 100px;
+    background: white;
     word-wrap: break-word;
     padding: 1em;
 }
@@ -288,14 +290,11 @@ nav li{
 }
 
 .id{
-    padding: 1em;
+    border-bottom: 2px solid #BADA55;
     display: inline;
-    border: 1px solid #BADA55;
-    border-radius: 5px;
     font-size: 12.5px;
     float: right;
     margin-right: -20px;
-    margin-top: -10px;
 }
 
 .severity{
@@ -305,7 +304,11 @@ nav li{
    
 }
 
-/*LARGE SCREENS*/
+/*SMALL SCREENS*/
 
-@media(min-width: 700px){
+@media(min-width: 300px){
+
+    .delete-closed {
+        margin: 10px;
+    }
 }
