@@ -73,8 +73,8 @@
             this.filterText = document.getElementById("filterText");
             this.dropdownContent = document.getElementsByClassName('dropdown-content');
             this.deleteResolvedId = document.getElementById("deleteClosed");
-            this.resolved = document.getElementById("seeResolved");
-            this.unresolved = document.getElementById("seeUnresolved");
+            this.closed = document.getElementById("seeClosed");
+            this.open = document.getElementById("seeOpen");
             this.all = document.getElementById("seeAll");
             
             // relevant to count.
@@ -87,12 +87,12 @@
         render: function() {
             var issues = storage.getStorage();
             // check what the filter is.
-            if (this.elementFilter.className === "resolved") {
+            if (this.elementFilter.className === "closed") {
                 issues = issues.filter(function(issue) {
                         return issue.status === true;
                     })
                 
-            } else if (this.elementFilter.className === "unResolved") {
+            } else if (this.elementFilter.className === "open") {
                 issues = issues.filter(function(issue) {
                         return issue.status === false;
                     })
@@ -121,7 +121,8 @@
             var status = false;
             
             // creation of the issue object.
-            var issue = {
+            var issue = 
+                {
                     id: issueId,
                     category: this.issueCategory.value,
                     description: this.issueDesc.value,
@@ -156,8 +157,8 @@
             }.bind(this));
 
             this.all.addEventListener("click", this.seeAll.bind(this));
-            this.unresolved.addEventListener("click", this.seeUnresolved.bind(this));
-            this.resolved.addEventListener("click", this.seeResolved.bind(this));
+            this.open.addEventListener("click", this.seeOpen.bind(this));
+            this.closed.addEventListener("click", this.seeClosed.bind(this));
             this.deleteResolvedId.addEventListener("click", this.deleteClosed);
             
             // issue eventHandler added to document in case no issues exist.  
@@ -226,19 +227,19 @@
             storage.setStorage(issues);
             app.render();
         },
-        seeResolved: function() {
+        seeClosed: function() {
             // set className so that render can return correct filter view.
-            this.elementFilter.className = "resolved";
+            this.elementFilter.className = "closed";
             // removes filter dropdown menu. 
             this.dropDownClass.classList.toggle("drop-button");
             // set filter dropdown text equal to the selected filter.
-            this.filterText.innerText = "Resolved";
+            this.filterText.innerText = "Closed";
             app.render();
         },
-        seeUnresolved: function() {
-            this.elementFilter.className = "unResolved";
+        seeOpen: function() {
+            this.elementFilter.className = "open";
             this.dropDownClass.classList.toggle("drop-button");
-            this.filterText.innerText = "Unresolved";
+            this.filterText.innerText = "Open";
             app.render();       
         },
         seeAll: function() {
