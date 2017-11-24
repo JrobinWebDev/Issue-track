@@ -94,7 +94,7 @@ nav li{
 
 .issue-form button, .issue-form input, issue-form textarea{
     padding: 1em;
-    border: 1px solid #c9e6ff;
+    border: 0.5px solid grey;
 }
 
 .issue-form select{
@@ -104,7 +104,7 @@ nav li{
 
 .issue-form textarea, .issue-form select, .issue-form input{
     padding: 5px;
-    border: 0.5 px solid grey;
+    border: 0.5px solid grey;
     border-radius: 5px;
 }
 
@@ -209,10 +209,11 @@ nav li{
     background: #BADA55;
     border-radius: 5px;
     text-align: center;
+    font-size: 0.8em;
     padding: 5px;
     display: inline;
     float: right;
-    margin-top: -50px;
+    margin-top: -45px;
 }
 
 /*ISSUES*/
