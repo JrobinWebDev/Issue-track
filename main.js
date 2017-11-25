@@ -72,7 +72,7 @@
             this.elementFilter = document.getElementById("issue");
             this.filterText = document.getElementById("filterText");
             this.dropdownContent = document.getElementsByClassName('dropdown-content');
-            this.deleteResolvedId = document.getElementById("deleteClosed");
+            this.deleteClosedId = document.getElementById("deleteClosed");
             this.closed = document.getElementById("seeClosed");
             this.open = document.getElementById("seeOpen");
             this.all = document.getElementById("seeAll");
@@ -159,7 +159,7 @@
             this.all.addEventListener("click", this.seeAll.bind(this));
             this.open.addEventListener("click", this.seeOpen.bind(this));
             this.closed.addEventListener("click", this.seeClosed.bind(this));
-            this.deleteResolvedId.addEventListener("click", this.deleteClosed);
+            this.deleteClosedId.addEventListener("click", this.deleteClosed);
             
             // issue eventHandler added to document in case no issues exist.  
             document.addEventListener("click", function(event){
