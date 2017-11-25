@@ -102,7 +102,7 @@
                             <strong>Assigned to:</strong> &nbsp {{assignedTo}}
                         </p>
                         <p>
-                            <strong>Issue Status:</strong> &nbsp {{statusText}}
+                            <strong>Issue Status:</strong> <strong class="status-open">{{statusText}}</strong>
                         </p>
                         <p>
                             <strong>Issued on:</strong> &nbsp {{date}}
@@ -113,10 +113,10 @@
                     </p>
                 </div>
                 {{#if status}}
-                        <button id="statusButton" type="button" disabled class="issue-closed-true">Close Issue</button>{{else}}
-                        <button id="statusButton" class="issue-closed">Close Issue</button>
-                        {{/if}}
-                        <button id="deleteButton" class="issue-delete">Delete Issue</button>
+                <button id="statusButton" type="button" disabled class="issue-closed-true">Close Issue</button>{{else}}
+                <button id="statusButton" class="issue-closed">Close Issue</button>
+                {{/if}}
+                <button id="deleteButton" class="issue-delete">Delete Issue</button>
                 <div class="id-severity">
                     <img src="/icons/sign-warning-icon.png" class="img-triangle" alt="triangle hazard icon">
                     <strong class="severity"> {{severity}}</strong>
