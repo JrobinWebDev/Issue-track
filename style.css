@@ -319,8 +319,6 @@ nav li{
     margin-left: 10px;  
 }
 
-/*FINISH THESE STYLES */
-
 .status-open{
     background-color: #BADA55;
     border: 1px solid #BADA55;
@@ -328,10 +326,11 @@ nav li{
     padding: 2px;
     width: 40%;
 }
-/*WHEN WE CLOSE APPLY THIS STYLE NEED TO FINISH*/
+
 .status-closed{
-    background-color: #BADA55;
-    border: 1px solid #BADA55;
+    background-color: #FF4136;
+    border: 1px solid #FF4136;
+    opacity: 0.8;
     border-radius: 5px;
 }
 
