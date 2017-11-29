@@ -67,7 +67,8 @@
             this.issueAssignedTo = document.getElementById("issueAssignedToInput");
             this.inputForm = document.getElementById("issueInputForm");
             
-            // relevant to filter nav.
+            // relevant to filters:
+            // by status
             this.dropDownClass = document.getElementById("filterDropdown");
             this.elementFilter = document.getElementById("issue");
             this.filterText = document.getElementById("filterText");
@@ -76,6 +77,10 @@
             this.closed = document.getElementById("seeClosed");
             this.open = document.getElementById("seeOpen");
             this.all = document.getElementById("seeAll");
+            // by risk
+            this.statusText = document.getElementById('seeLow');
+            this.statusText = document.getElementById('seeMedium');
+            this.statusText = document.getElementById('seeHigh');
             
             // relevant to count.
             this.countDiv = document.getElementById('count');
