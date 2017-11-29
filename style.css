@@ -151,19 +151,20 @@ nav li{
 .dropdown-tag{
     border-radius: 5px;
     padding: 11px;
-    font-size: 15px;
+    font-size: 13px;
     border: 1px solid #BADA55;
+    margin-right: 30px;
     background: whitesmoke;
 }
 
 /*DROPDOWN BUTTON*/
 
 .drop-button{
-    background-color: #BADA55;
+    background-color: whitesmoke;
     color: black;
     width: 100px;
     padding: 11px;
-    font-size: 15.5px;
+    font-size: 13px;
     border: 1px solid #BADA55;
     border-radius: 5px;
     cursor: pointer;
@@ -190,6 +191,7 @@ nav li{
 
 .dropdown-content a {
     color: black;
+    font-size: 13px;
     padding: 10px 2px;
     text-decoration: none;
     display: block;

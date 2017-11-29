@@ -59,11 +59,10 @@
             </div>
                 <nav>
                     <ul>
-                        <li class="dropdown-tag">Filter Issues:
-                        </li>
+                        <li class="dropdown-tag">Filter by:</li>
                         <li>
                             <div id="issueFilter" class="dropdown-menu">
-                                <button id="filterText" class="drop-button">All</button>
+                                <button id="filterText" class="drop-button">Status</button>
                                 <div id="filterDropdown" class="dropdown-content">
                                     <a id="seeAll">All </a>
                                     <a id="seeClosed">Closed</a>
@@ -71,7 +70,18 @@
                                 </div>
                             </div>
                         </li>
-                        <li><button id="deleteClosed" class="delete-closed">Delete Closed</button>
+                        <li>
+                            <div id="riskFilter" class="dropdown-menu">
+                                <button id="riskText" class="drop-button">Risk</button>
+                                <div id="filterDropdown" class="dropdown-content">
+                                    <a id="seeLow">Low </a>
+                                    <a id="seeMedium">Medium</a>
+                                    <a id="seeHigh">High</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <button id="deleteClosed" class="delete-closed">Delete Closed</button>
                         </li>
                     </ul>
                 </nav> 
