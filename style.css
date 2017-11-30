@@ -128,8 +128,9 @@ nav li{
     background: #BADA55;
     color: white;
     outline: 0;
-/*    CHANGE THIS COLOR*/
-    transition: background-color 1s ease-out;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
 } 
 
 /*BUTTON NAV*/
@@ -146,6 +147,9 @@ nav li{
 
 .delete-closed:hover{
     color: white;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
 }
 
 .dropdown-tag{
@@ -170,8 +174,11 @@ nav li{
     cursor: pointer;
 }
 
-.drop-button:hover{
+.drop-button:hover {
     color: white;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
 }
 
 .dropdown-menu{
@@ -198,7 +205,12 @@ nav li{
 }
 
 .dropdown-content a:hover {
-    background-color: #f1f1f1;
+    background-color: #BADA55;
+    border: 0.5px solid grey;
+    cursor: default;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
 }
 
 .show {
@@ -249,7 +261,6 @@ nav li{
     border-radius: 5px;
     background: whitesmoke;
     border: 2px solid #BADA55;
-    
 }
 
 .issue-content, .id-severity{
@@ -275,10 +286,6 @@ nav li{
     cursor: pointer;
 }
 
-.issue-delete:hover{
-    color: white;
-}
-
 .issue-closed{
     margin-left: auto;
     background-color: #BADA55;
@@ -291,8 +298,11 @@ nav li{
     cursor: pointer;    
 }
 
-.issue-closed:hover{
+.issue-closed:hover, .issue-delete:hover{
     color: white;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
 }
 
 .issue-closed-true{
@@ -339,7 +349,7 @@ nav li{
 /*SMALL SCREENS*/
 
 @media(min-width: 300px){
-
+    
     .delete-closed {
         margin: 10px;
     }
