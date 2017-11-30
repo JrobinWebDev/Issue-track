@@ -1,4 +1,3 @@
-// object literal module pattern
 (function() {
     'use strict';
     
@@ -21,7 +20,7 @@
     };
     
     var util = {
-        // id creation to create unique issue identifier, which will be used to close and delete issues.
+        // creation of unique issue id - used to close and delete issues.
         uid: function() {
             var id = Math.random()
                 .toString(36)
@@ -84,10 +83,6 @@
             
             // relevant to count.
             this.countDiv = document.getElementById('count');
-            
-            // relevant to issues.
-            this.deleteId = document.getElementById('deleteButton');
-            this.closeId = document.getElementById('statusButton');
         },
         render: function() {
             var issues = storage.getStorage();
