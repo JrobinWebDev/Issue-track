@@ -67,20 +67,17 @@
             this.inputForm = document.getElementById("issueInputForm");
             
             // relevant to filters:
-            this.filterButtons = document.querySelectorAll('.drop-button');
+            this.filterButton = document.querySelector('.drop-button');
             this.elementFilter = document.getElementById("issue");
             this.filterText = document.getElementById("filterText");
-            this.statusDropdownContent = document.getElementById('filterDropdown');
-            this.allDropDown = document.querySelectorAll(".dropdown-content");
+            this.dropdownContent = document.getElementById('filterDropdown');
             this.deleteClosedId = document.getElementById("deleteClosed");
             this.closed = document.getElementById("seeClosed");
             this.open = document.getElementById("seeOpen");
             this.all = document.getElementById("seeAll");
-            this.riskDropdownContent = document.getElementById('riskDropdown');
-            this.riskText = document.getElementById('riskText');
-            this.statusText = document.getElementById('seeLow');
-            this.statusText = document.getElementById('seeMedium');
-            this.statusText = document.getElementById('seeHigh');
+            this.low = document.getElementById("seeLow");
+            this.medium = document.getElementById("seeMedium");
+            this.high = document.getElementById("seeHigh");
             
             // relevant to count.
             this.countDiv = document.getElementById('count');
@@ -142,13 +139,16 @@
             this.inputForm.addEventListener("submit", this.addIssue);
             
             // filter listeners
-            for (var i = 0; i < this.filterButtons.length; i++) {
-                this.filterButtons[i].addEventListener("click", this.dropdown.bind(this));
-            };
+            this.filterButton.addEventListener("click", this.dropdown.bind(this));
+
             // USE QUERY SELECTOR AND LOOP THROUGH!
             this.all.addEventListener("click", this.seeAll.bind(this));
             this.open.addEventListener("click", this.seeOpen.bind(this));
             this.closed.addEventListener("click", this.seeClosed.bind(this));
+            
+            this.low.addEventListener("click", this.seeLow.bind(this));
+            this.medium.addEventListener("click", this.seeMedium.bind(this));
+            this.high.addEventListener("click", this.seeHigh.bind(this));
             this.deleteClosedId.addEventListener("click", this.deleteClosed);
             window.addEventListener("click", this.removeDropdown.bind(this));
             
@@ -166,21 +166,15 @@
                 }
             }.bind(this));
         },
-        dropdown: function(event) {
+        dropdown: function() {
             // toggle filter button dropdowns
-            if (event.target.id === 'filterText') {
-                this.statusDropdownContent.classList.toggle("show");
-            } else if (event.target.id === 'riskText') {
-                this.riskDropdownContent.classList.toggle("show");
-            } 
+            this.dropdownContent.classList.toggle("show");
         },
         removeDropdown: function(event) {
             // remove dropdowns if user clicks anywhere on window
             if(!event.target.matches(".drop-button")) {
-                for(var i = 0; i < this.allDropDown.length; i++){
-                    this.allDropDown[i].classList.remove("show");   
-               };
-            };
+                    this.dropdownContent.classList.remove("show");   
+               }
         },
         deleteIssue: function(id) {
             var issues = storage.getStorage();
@@ -227,6 +221,7 @@
             storage.setStorage(issues);
             app.render();
         },
+        // USE AN OBJECT LITERAL LOOKUP! TOO MUCH ELSE IF LOGIC!
         createFilter: function(type) {
             var issues = storage.getStorage();
             
@@ -243,18 +238,37 @@
                     })
                 this.render(issues);
                 
-            } else if (type === "all") {
+            } else if(type === "low") {
+                issues = issues.filter(function(issue) {
+                        return issue.severity === 'low';
+                    })
+                this.render(issues);  
+                
+            } else if(type === "medium") {
+                issues = issues.filter(function(issue) {
+                        return issue.severity === 'medium';
+                    })
+                this.render(issues); 
+                
+            } else if(type === "high") {
+                issues = issues.filter(function(issue) {
+                        return issue.severity === 'high';
+                    })
+                this.render(issues); 
+                
+            } else {
                  app.render(issues);
                 }
         },
+        // A LOT OF REPETITION HERE WE NEED TO REFACTOR THIS
         seeClosed: function() {
             var type;
             // set className so that we can return correct filter view.
             this.elementFilter.className = "closed";
             // remove filter dropdown. 
-            this.statusDropdownContent.classList.toggle("show");
+            this.dropdown();
             // set filter dropdown text.
-            this.filterText.innerText = "Closed";
+            this.filterText.innerText = " Status Closed";
             type = 'closed';
             // create filtered array
             this.createFilter(type);
@@ -262,8 +276,8 @@
         seeOpen: function() {
             var type;
             this.elementFilter.className = "open";
-            this.statusDropdownContent.classList.toggle("show");
-            this.filterText.innerText = "Open";
+            this.dropdown();
+            this.filterText.innerText = " Status Open";
             type = 'open';
             // create filtered array
             this.createFilter(type);
@@ -272,11 +286,39 @@
         seeAll: function() {
             var type;
             this.elementFilter.className = "all";
-            this.statusDropdownContent.classList.toggle("show");
+            this.dropdown();
             this.filterText.innerText = "All";
             type = 'all';
             // create filtered array
             this.createFilter(type);
+        },
+        seeLow: function() {
+            var type;
+            this.elementFilter.className = "low";
+            this.dropdown();
+            this.filterText.innerText = "Risk Low";
+            type = 'low';
+            // create filtered array
+            this.createFilter(type);
+        },
+        seeMedium: function() {
+            var type;
+            this.elementFilter.className = "medium";
+            this.dropdown();
+            this.filterText.innerText = "Risk Medium";
+            type = 'medium';
+            // create filtered array
+            this.createFilter(type);
+        },
+        seeHigh: function() {
+            var type;
+            this.elementFilter.className = "high";
+            this.dropdown();
+            this.filterText.innerText = "Risk High";
+            type = 'high';
+            // create filtered array
+            this.createFilter(type);
+            
         }
     }; 
    
