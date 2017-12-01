@@ -67,16 +67,17 @@
             this.inputForm = document.getElementById("issueInputForm");
             
             // relevant to filters:
-            // by status
-            this.dropDownClass = document.getElementById("filterDropdown");
+            this.filterButtons = document.querySelectorAll('.drop-button');
             this.elementFilter = document.getElementById("issue");
             this.filterText = document.getElementById("filterText");
-            this.dropdownContent = document.getElementsByClassName('dropdown-content');
+            this.statusDropdownContent = document.getElementById('filterDropdown');
+            this.allDropDown = document.querySelectorAll(".dropdown-content");
             this.deleteClosedId = document.getElementById("deleteClosed");
             this.closed = document.getElementById("seeClosed");
             this.open = document.getElementById("seeOpen");
             this.all = document.getElementById("seeAll");
-            // by risk
+            this.riskDropdownContent = document.getElementById('riskDropdown');
+            this.riskText = document.getElementById('riskText');
             this.statusText = document.getElementById('seeLow');
             this.statusText = document.getElementById('seeMedium');
             this.statusText = document.getElementById('seeHigh');
@@ -84,24 +85,13 @@
             // relevant to count.
             this.countDiv = document.getElementById('count');
         },
-        render: function() {
-            var issues = storage.getStorage();
-            // check what the filter is.
-            if (this.elementFilter.className === "closed") {
-                issues = issues.filter(function(issue) {
-                        return issue.status === true;
-                    })
-                
-            } else if (this.elementFilter.className === "open") {
-                issues = issues.filter(function(issue) {
-                        return issue.status === false;
-                    })
-                
-            } else if (this.elementFilter.className === "all") {
-                var issues = storage.getStorage();
-                }
-    
-            this.elementFilter.innerHTML = '';
+        render: function(filteredIssues) {
+            var issues;
+            if(filteredIssues) {
+                issues = filteredIssues;
+            } else {
+                issues = storage.getStorage();
+            }
             
             // html template converted to Handlebars function.
             var templateScript = Handlebars.compile(this.template);
@@ -109,7 +99,7 @@
             // issue object is passed as context.
             var html = templateScript(context);
             // handlebars template rendered to UI.
-            this.elementFilter.innerHTML += html;
+            this.elementFilter.innerHTML = html;
             
             // invoked to update the live counter.
             util.issueCount();    
@@ -148,21 +138,22 @@
             app.render();
         },
         bindEvents: function() {
-            // form submission eventHandler
+            // form submission listeners
             this.inputForm.addEventListener("submit", this.addIssue);
             
-            // filter nav eventHandlers
-            this.filterText.parentElement.addEventListener("click", function(){
-                this.dropDownClass.classList.toggle("show");
-            }.bind(this));
-
+            // filter listeners
+            for (var i = 0; i < this.filterButtons.length; i++) {
+                this.filterButtons[i].addEventListener("click", this.dropdown.bind(this));
+            };
+            // USE QUERY SELECTOR AND LOOP THROUGH!
             this.all.addEventListener("click", this.seeAll.bind(this));
             this.open.addEventListener("click", this.seeOpen.bind(this));
             this.closed.addEventListener("click", this.seeClosed.bind(this));
             this.deleteClosedId.addEventListener("click", this.deleteClosed);
+            window.addEventListener("click", this.removeDropdown.bind(this));
             
-            // issue eventHandler added to document in case no issues exist.  
-            document.addEventListener("click", function(event){
+            // issue listeners 
+            this.elementFilter.addEventListener("click", function(event){
                 var clicked = event.target;
                 
                 if (clicked.id === "deleteButton" ) {
@@ -174,13 +165,22 @@
                     this.closeIssue(issueId);
                 }
             }.bind(this));
-            
-            // removes filter dropdown menu when user clicks outside of it.
-            window.addEventListener("click", function(event){
-                if(!event.target.matches(".drop-button")) {
-                    this.dropDownClass.classList.remove("show");
-                }
-            }.bind(this));
+        },
+        dropdown: function(event) {
+            // toggle filter button dropdowns
+            if (event.target.id === 'filterText') {
+                this.statusDropdownContent.classList.toggle("show");
+            } else if (event.target.id === 'riskText') {
+                this.riskDropdownContent.classList.toggle("show");
+            } 
+        },
+        removeDropdown: function(event) {
+            // remove dropdowns if user clicks anywhere on window
+            if(!event.target.matches(".drop-button")) {
+                for(var i = 0; i < this.allDropDown.length; i++){
+                    this.allDropDown[i].classList.remove("show");   
+               };
+            };
         },
         deleteIssue: function(id) {
             var issues = storage.getStorage();
@@ -227,26 +227,56 @@
             storage.setStorage(issues);
             app.render();
         },
+        createFilter: function(type) {
+            var issues = storage.getStorage();
+            
+            // check what the filter is.
+            if (type === "closed") {
+                issues = issues.filter(function(issue) {
+                        return issue.status === true;
+                    })
+                this.render(issues);
+                
+            } else if (type === "open") {
+                issues = issues.filter(function(issue) {
+                        return issue.status === false;
+                    })
+                this.render(issues);
+                
+            } else if (type === "all") {
+                 app.render(issues);
+                }
+        },
         seeClosed: function() {
-            // set className so that render can return correct filter view.
+            var type;
+            // set className so that we can return correct filter view.
             this.elementFilter.className = "closed";
-            // removes filter dropdown menu. 
-            this.dropDownClass.classList.toggle("drop-button");
-            // set filter dropdown text equal to the selected filter.
+            // remove filter dropdown. 
+            this.statusDropdownContent.classList.toggle("show");
+            // set filter dropdown text.
             this.filterText.innerText = "Closed";
-            app.render();
+            type = 'closed';
+            // create filtered array
+            this.createFilter(type);
         },
         seeOpen: function() {
+            var type;
             this.elementFilter.className = "open";
-            this.dropDownClass.classList.toggle("drop-button");
+            this.statusDropdownContent.classList.toggle("show");
             this.filterText.innerText = "Open";
-            app.render();       
+            type = 'open';
+            // create filtered array
+            this.createFilter(type);
+            
         },
         seeAll: function() {
+            var type;
             this.elementFilter.className = "all";
-            this.dropDownClass.classList.toggle("drop-button");
+            this.statusDropdownContent.classList.toggle("show");
             this.filterText.innerText = "All";
-            app.render();      
+            type = 'all';
+            // create filtered array
+            this.createFilter(type);
         }
     }; 
    
