@@ -161,6 +161,10 @@ nav li{
     background: whitesmoke;
 }
 
+#seeLow, #seeClosed{
+    border-top: 1px solid grey;
+}
+
 /*DROPDOWN BUTTON*/
 
 .drop-button{
