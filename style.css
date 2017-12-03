@@ -58,6 +58,10 @@ body{
     padding: 1em;
 }
 
+.wrapper{
+    min-height: 800px;
+}
+
 nav{
     width: 60%;
     margin: auto;
@@ -152,15 +156,6 @@ nav li{
     -moz-transition: all 0.4s;
 }
 
-.dropdown-tag{
-    border-radius: 5px;
-    padding: 11px;
-    font-size: 13px;
-    border: 1px solid #BADA55;
-    margin-right: 30px;
-    background: whitesmoke;
-}
-
 hr{
     border: 0;
     width: 90%;
@@ -172,17 +167,17 @@ hr{
 /*DROPDOWN BUTTON*/
 
 .drop-button{
-    background-color: whitesmoke;
+    background-color: #BADA55;
     color: black;
     width: 100px;
     padding: 11px;
-    font-size: 13px;
+    font-size: 15.5px;
     border: 1px solid #BADA55;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.drop-button:hover {
+.drop-button:hover{
     color: white;
     transition: all 0.4s;
     -webkit-transition: all 0.4s;
@@ -194,7 +189,7 @@ hr{
     display: inline-block;   
 }
 
-.dropdown-content {
+.dropdown-content{
     display: none;
     position: absolute;
     background-color: #f9f9f9;
