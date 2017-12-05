@@ -140,16 +140,15 @@
             
             // filter listeners
             this.filterButton.addEventListener("click", this.dropdown.bind(this));
-
-            // USE QUERY SELECTOR AND LOOP THROUGH!
             this.all.addEventListener("click", this.seeAll.bind(this));
             this.open.addEventListener("click", this.seeOpen.bind(this));
             this.closed.addEventListener("click", this.seeClosed.bind(this));
-            
             this.low.addEventListener("click", this.seeLow.bind(this));
             this.medium.addEventListener("click", this.seeMedium.bind(this));
             this.high.addEventListener("click", this.seeHigh.bind(this));
             this.deleteClosedId.addEventListener("click", this.deleteClosed);
+            
+            // dropdown listeners
             window.addEventListener("click", this.removeDropdown.bind(this));
             
             // issue listeners 
@@ -189,6 +188,7 @@
             app.render();   
         },
         closeIssue: function(id) {
+            var filterEl = document.getElementById('issue');
             var issues = storage.getStorage();  
             
             // 'issue.statusText' is set to 'closed' so we can add closing date below.
@@ -206,7 +206,11 @@
             })
 
             storage.setStorage(issues);
-            app.render();
+            // check what the filter is
+            var filterType = filterEl.className;
+            var currentFilter = this.getFilteredArray(filterType);
+            
+            app.render(currentFilter);
         },
         deleteClosed: function() {
             var issues = storage.getStorage();  
@@ -221,104 +225,126 @@
             storage.setStorage(issues);
             app.render();
         },
-        // USE AN OBJECT LITERAL LOOKUP! TOO MUCH ELSE IF LOGIC!
-        createFilter: function(type) {
+        getFilteredArray: function(type) {
             var issues = storage.getStorage();
             
-            // check what the filter is.
-            if (type === "closed") {
-                issues = issues.filter(function(issue) {
-                        return issue.status === true;
-                    })
-                this.render(issues);
-                
-            } else if (type === "open") {
-                issues = issues.filter(function(issue) {
-                        return issue.status === false;
-                    })
-                this.render(issues);
-                
-            } else if(type === "low") {
+            var filters = {
+                'open': function('open') {
+                    issues = issues.filter(function(issue) {
+                        return issue.severity === 'low';
+                    });
+                    
+                    this.render(issues);  
+                },
+                'closed': app.filterByStatus('closed'),
+                'all': app.filterByStatus('all'),
+                'low': app.filterByRisk('low'),
+                'medium': app.filterByRisk('medium'),
+               'high': app.filterByRisk('high')
+            };
+            return filters[type]();
+        },
+        filterByRisk: function(risk) {
+            var issues = storage.getStorage();
+            
+            // check risk and filter issues array accordingly.
+            if (risk === "low") {
                 issues = issues.filter(function(issue) {
                         return issue.severity === 'low';
                     })
                 this.render(issues);  
                 
-            } else if(type === "medium") {
+            } else if(risk === "medium") {
                 issues = issues.filter(function(issue) {
                         return issue.severity === 'medium';
                     })
                 this.render(issues); 
                 
-            } else if(type === "high") {
+            } else {
                 issues = issues.filter(function(issue) {
                         return issue.severity === 'high';
                     })
                 this.render(issues); 
+            }
+        },
+        filterByStatus: function(status) {
+            var issues = storage.getStorage();
+            
+            // check what the status and filter issues accordingly.
+            if (status === "closed") {
+                issues = issues.filter(function(issue) {
+                        return issue.status === true;
+                    })
+                this.render(issues);
+                
+            } else if (status === "open") {
+                issues = issues.filter(function(issue) {
+                        return issue.status === false;
+                    })
+                this.render(issues);
                 
             } else {
                  app.render(issues);
-                }
+            }
         },
         // A LOT OF REPETITION HERE WE NEED TO REFACTOR THIS
         seeClosed: function() {
-            var type;
+            var status;
             // set className so that we can return correct filter view.
             this.elementFilter.className = "closed";
             // remove filter dropdown. 
             this.dropdown();
             // set filter dropdown text.
             this.filterText.innerText = " Status Closed";
-            type = 'closed';
+            status = 'closed';
             // create filtered array
-            this.createFilter(type);
+            this.filterByStatus(status);
         },
         seeOpen: function() {
-            var type;
+            var status;
             this.elementFilter.className = "open";
             this.dropdown();
             this.filterText.innerText = " Status Open";
-            type = 'open';
+            status = 'open';
             // create filtered array
-            this.createFilter(type);
+            this.filterByStatus(status);
             
         },
         seeAll: function() {
-            var type;
+            var status;
             this.elementFilter.className = "all";
             this.dropdown();
             this.filterText.innerText = "All";
-            type = 'all';
+            status = 'all';
             // create filtered array
-            this.createFilter(type);
+            this.filterByStatus(status);
         },
         seeLow: function() {
-            var type;
+            var risk;
             this.elementFilter.className = "low";
             this.dropdown();
             this.filterText.innerText = "Risk Low";
-            type = 'low';
+            risk = 'low';
             // create filtered array
-            this.createFilter(type);
+            this.filterByRisk(risk);
         },
         seeMedium: function() {
-            var type;
+            var risk;
             this.elementFilter.className = "medium";
             this.dropdown();
             this.filterText.innerText = "Risk Medium";
-            type = 'medium';
+            risk = 'medium';
             // create filtered array
-            this.createFilter(type);
+            this.filterByRisk(risk);
         },
         seeHigh: function() {
-            var type;
+            var risk;
             this.elementFilter.className = "high";
             this.dropdown();
             this.filterText.innerText = "Risk High";
-            type = 'high';
+            risk = 'high';
             // create filtered array
-            this.createFilter(type);
-            
+            this.filterByRisk(risk);
         }
     }; 
    
