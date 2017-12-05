@@ -118,7 +118,7 @@
                     statusText: statusText,
                     date: issueDate,
                     status: status
-                }
+                };
             
             return issue;   
         },
@@ -154,13 +154,12 @@
             // issue listeners 
             this.elementFilter.addEventListener("click", function(event){
                 var clicked = event.target;
+                var issueId = clicked.parentElement.id;
                 
                 if (clicked.id === "deleteButton" ) {
-                    var issueId = clicked.parentElement.id;
                     this.deleteIssue(issueId);
                 }
                 if (clicked.id === "statusButton") {
-                    var issueId = clicked.parentElement.id;
                     this.closeIssue(issueId);
                 }
             }.bind(this));
@@ -176,19 +175,26 @@
                }
         },
         deleteIssue: function(id) {
+            // grab the current filter
+            var filterEl = document.getElementById('issue');
+            var filterType = filterEl.className;
+    
             var issues = storage.getStorage();
 
             issues.forEach(function(issue,index){
                 if (issue.id === id) {
-                    issues.splice(index, 1)
+                    issues.splice(index, 1);
                 }
             })
          
             storage.setStorage(issues);
-            app.render();   
+            // render the correct filter
+            this.getFilteredArray(filterType);
         },
         closeIssue: function(id) {
             var filterEl = document.getElementById('issue');
+            var filterType = filterEl.className;
+            
             var issues = storage.getStorage();  
             
             // 'issue.statusText' is set to 'closed' so we can add closing date below.
@@ -206,11 +212,7 @@
             })
 
             storage.setStorage(issues);
-            // check what the filter is
-            var filterType = filterEl.className;
-            var currentFilter = this.getFilteredArray(filterType);
-            
-            app.render(currentFilter);
+            this.getFilteredArray(filterType);
         },
         deleteClosed: function() {
             var issues = storage.getStorage();  
@@ -227,66 +229,50 @@
         },
         getFilteredArray: function(type) {
             var issues = storage.getStorage();
-            
+            // object lookup for easy filter access
             var filters = {
-                'open': function('open') {
+                'open': function() {
+                    issues = issues.filter(function(issue) {
+                        return issue.status === false;
+                    });
+                    
+                    app.render(issues);    
+                },
+                'closed': function() {
+                    issues = issues.filter(function(issue) {
+                        return issue.status === true;
+                    });
+                    
+                    app.render(issues);
+                },
+                'all': function() {
+                    app.render(issues);  
+                },
+                'low': function() {
                     issues = issues.filter(function(issue) {
                         return issue.severity === 'low';
                     });
                     
-                    this.render(issues);  
+                    app.render(issues);      
                 },
-                'closed': app.filterByStatus('closed'),
-                'all': app.filterByStatus('all'),
-                'low': app.filterByRisk('low'),
-                'medium': app.filterByRisk('medium'),
-               'high': app.filterByRisk('high')
-            };
-            return filters[type]();
-        },
-        filterByRisk: function(risk) {
-            var issues = storage.getStorage();
-            
-            // check risk and filter issues array accordingly.
-            if (risk === "low") {
-                issues = issues.filter(function(issue) {
-                        return issue.severity === 'low';
-                    })
-                this.render(issues);  
-                
-            } else if(risk === "medium") {
-                issues = issues.filter(function(issue) {
+                'medium': function() {
+                    issues = issues.filter(function(issue) {
                         return issue.severity === 'medium';
-                    })
-                this.render(issues); 
-                
-            } else {
-                issues = issues.filter(function(issue) {
-                        return issue.severity === 'high';
-                    })
-                this.render(issues); 
-            }
-        },
-        filterByStatus: function(status) {
-            var issues = storage.getStorage();
+                    });
             
-            // check what the status and filter issues accordingly.
-            if (status === "closed") {
-                issues = issues.filter(function(issue) {
-                        return issue.status === true;
-                    })
-                this.render(issues);
-                
-            } else if (status === "open") {
-                issues = issues.filter(function(issue) {
-                        return issue.status === false;
-                    })
-                this.render(issues);
-                
-            } else {
-                 app.render(issues);
-            }
-        },
+                    app.render(issues); 
+                },
+               'high': function() {
+                   issues = issues.filter(function(issue) {
+                        return issue.severity === 'high';
+                    });
+                   
+                    app.render(issues); 
+               }
+            };
+            // invoke the correct function
+            filters[type]();
+        },       
         // A LOT OF REPETITION HERE WE NEED TO REFACTOR THIS
         seeClosed: function() {
             var status;
@@ -298,7 +284,7 @@
             this.filterText.innerText = " Status Closed";
             status = 'closed';
             // create filtered array
-            this.filterByStatus(status);
+            this.getFilteredArray(status);
         },
         seeOpen: function() {
             var status;
@@ -307,7 +293,7 @@
             this.filterText.innerText = " Status Open";
             status = 'open';
             // create filtered array
-            this.filterByStatus(status);
+            this.getFilteredArray(status);
             
         },
         seeAll: function() {
@@ -317,7 +303,7 @@
             this.filterText.innerText = "All";
             status = 'all';
             // create filtered array
-            this.filterByStatus(status);
+            this.getFilteredArray(status);
         },
         seeLow: function() {
             var risk;
@@ -326,7 +312,7 @@
             this.filterText.innerText = "Risk Low";
             risk = 'low';
             // create filtered array
-            this.filterByRisk(risk);
+            this.getFilteredArray(risk);
         },
         seeMedium: function() {
             var risk;
@@ -335,7 +321,7 @@
             this.filterText.innerText = "Risk Medium";
             risk = 'medium';
             // create filtered array
-            this.filterByRisk(risk);
+            this.getFilteredArray(risk);
         },
         seeHigh: function() {
             var risk;
@@ -344,7 +330,7 @@
             this.filterText.innerText = "Risk High";
             risk = 'high';
             // create filtered array
-            this.filterByRisk(risk);
+            this.getFilteredArray(risk);
         }
     }; 
    
