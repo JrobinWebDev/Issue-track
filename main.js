@@ -67,6 +67,7 @@
             this.inputForm = document.getElementById("issueInputForm");
             
             // relevant to filters:
+            this.filterEl = document.getElementById('issue');
             this.filterButton = document.querySelector('.drop-button');
             this.elementFilter = document.getElementById("issue");
             this.filterText = document.getElementById("filterText");
@@ -176,8 +177,7 @@
         },
         deleteIssue: function(id) {
             // grab the current filter
-            var filterEl = document.getElementById('issue');
-            var filterType = filterEl.className;
+            var filterType = this.filterEl.className;
     
             var issues = storage.getStorage();
 
@@ -186,14 +186,13 @@
                     issues.splice(index, 1);
                 }
             })
-         
+            
             storage.setStorage(issues);
             // render the correct filter
             this.getFilteredArray(filterType);
         },
         closeIssue: function(id) {
-            var filterEl = document.getElementById('issue');
-            var filterType = filterEl.className;
+            var filterType = this.filterEl.className;
             
             var issues = storage.getStorage();  
             
@@ -210,7 +209,7 @@
                     issue.statusText = 'Closed on: ' + util.createDate(); 
                 }
             })
-
+            
             storage.setStorage(issues);
             this.getFilteredArray(filterType);
         },
