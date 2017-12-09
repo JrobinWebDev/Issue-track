@@ -272,7 +272,7 @@
             
             var filterId = {
                 'seeOpen': function() {
-                     // set className so that we can return correct filter view.
+                     // set className to current filter.
                     app.elementFilter.className = "open";
                     // remove filter dropdown. 
                     app.dropdown();
@@ -288,27 +288,28 @@
                     app.getFilteredArray('closed');
                 },
                 'seeAll': function() {
-                    this.elementFilter.className = "all";
-                    this.dropdown();
-                    this.filterText.innerText = "All";
-                    this.getFilteredArray('all');  
+                    app.elementFilter.className = "all";
+                    app.dropdown();
+                    app.filterText.innerText = "All";
+                    app.getFilteredArray('all');  
                 },
                 'seeLow': function() {
-                    this.elementFilter.className = "low";
-                    this.dropdown();
-                    this.filterText.innerText = "Risk Low";
+                    app.elementFilter.className = "low";
+                    app.dropdown();
+                    app.filterText.innerText = "Risk Low";
+                    app.getFilteredArray('low');
                 },
                 'seeMedium': function() {
-                    this.elementFilter.className = "medium";
-                    this.dropdown();
-                    this.filterText.innerText = "Risk Medium";
-                    this.getFilteredArray('medium');
+                    app.elementFilter.className = "medium";
+                    app.dropdown();
+                    app.filterText.innerText = "Risk Medium";
+                    app.getFilteredArray('medium');
                 },
                 'seeHigh': function() {
-                    this.elementFilter.className = "high";
-                    this.dropdown();
-                    this.filterText.innerText = "Risk High";
-                    this.getFilteredArray('high');
+                    app.elementFilter.className = "high";
+                    app.dropdown();
+                    app.filterText.innerText = "Risk High";
+                    app.getFilteredArray('high');
                 }
             };
             
