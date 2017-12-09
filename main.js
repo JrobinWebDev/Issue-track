@@ -73,12 +73,7 @@
             this.filterText = document.getElementById("filterText");
             this.dropdownContent = document.getElementById('filterDropdown');
             this.deleteClosedId = document.getElementById("deleteClosed");
-            this.closed = document.getElementById("seeClosed");
-            this.open = document.getElementById("seeOpen");
-            this.all = document.getElementById("seeAll");
-            this.low = document.getElementById("seeLow");
-            this.medium = document.getElementById("seeMedium");
-            this.high = document.getElementById("seeHigh");
+            this.filterId = document.querySelectorAll('a');
             
             // relevant to count.
             this.countDiv = document.getElementById('count');
@@ -141,12 +136,11 @@
             
             // filter listeners
             this.filterButton.addEventListener("click", this.dropdown.bind(this));
-            this.all.addEventListener("click", this.seeAll.bind(this));
-            this.open.addEventListener("click", this.seeOpen.bind(this));
-            this.closed.addEventListener("click", this.seeClosed.bind(this));
-            this.low.addEventListener("click", this.seeLow.bind(this));
-            this.medium.addEventListener("click", this.seeMedium.bind(this));
-            this.high.addEventListener("click", this.seeHigh.bind(this));
+            
+            for (var i = 0; i < this.filterId.length; i++) {
+                this.filterId[i].addEventListener("click", this.setFilter.bind(this));
+            }
+            
             this.deleteClosedId.addEventListener("click", this.deleteClosed);
             
             // dropdown listeners
@@ -185,7 +179,7 @@
                 if (issue.id === id) {
                     issues.splice(index, 1);
                 }
-            })
+            });
             
             storage.setStorage(issues);
             // render the correct filter
@@ -202,13 +196,13 @@
                     issue.statusText = 'Closed';
                     issue.status = true;
                 }
-            })
+            });
        
             issues.forEach(function(issue){
                 if (issue.statusText === 'Closed') {
                     issue.statusText = 'Closed on: ' + util.createDate(); 
                 }
-            })
+            });
             
             storage.setStorage(issues);
             this.getFilteredArray(filterType);
@@ -271,67 +265,57 @@
             };
             // invoke the correct function
             filters[type]();
-        },       
-        // A LOT OF REPETITION HERE WE NEED TO REFACTOR THIS
-        seeClosed: function() {
-            var status;
-            // set className so that we can return correct filter view.
-            this.elementFilter.className = "closed";
-            // remove filter dropdown. 
-            this.dropdown();
-            // set filter dropdown text.
-            this.filterText.innerText = " Status Closed";
-            status = 'closed';
-            // create filtered array
-            this.getFilteredArray(status);
-        },
-        seeOpen: function() {
-            var status;
-            this.elementFilter.className = "open";
-            this.dropdown();
-            this.filterText.innerText = " Status Open";
-            status = 'open';
-            // create filtered array
-            this.getFilteredArray(status);
+        }, 
+        setFilter: function(event) {
+            // grab id name of click
+            var type = event.target.id;
             
-        },
-        seeAll: function() {
-            var status;
-            this.elementFilter.className = "all";
-            this.dropdown();
-            this.filterText.innerText = "All";
-            status = 'all';
-            // create filtered array
-            this.getFilteredArray(status);
-        },
-        seeLow: function() {
-            var risk;
-            this.elementFilter.className = "low";
-            this.dropdown();
-            this.filterText.innerText = "Risk Low";
-            risk = 'low';
-            // create filtered array
-            this.getFilteredArray(risk);
-        },
-        seeMedium: function() {
-            var risk;
-            this.elementFilter.className = "medium";
-            this.dropdown();
-            this.filterText.innerText = "Risk Medium";
-            risk = 'medium';
-            // create filtered array
-            this.getFilteredArray(risk);
-        },
-        seeHigh: function() {
-            var risk;
-            this.elementFilter.className = "high";
-            this.dropdown();
-            this.filterText.innerText = "Risk High";
-            risk = 'high';
-            // create filtered array
-            this.getFilteredArray(risk);
+            var filterId = {
+                'seeOpen': function() {
+                     // set className so that we can return correct filter view.
+                    app.elementFilter.className = "open";
+                    // remove filter dropdown. 
+                    app.dropdown();
+                    // set filter dropdown text.
+                    app.filterText.innerText = " Status Open";
+                    // create filtered array
+                    app.getFilteredArray('open');
+                },
+                'seeClosed': function() {
+                    app.elementFilter.className = "closed"; 
+                    app.dropdown();
+                    app.filterText.innerText = " Status Closed";
+                    app.getFilteredArray('closed');
+                },
+                'seeAll': function() {
+                    this.elementFilter.className = "all";
+                    this.dropdown();
+                    this.filterText.innerText = "All";
+                    this.getFilteredArray('all');  
+                },
+                'seeLow': function() {
+                    this.elementFilter.className = "low";
+                    this.dropdown();
+                    this.filterText.innerText = "Risk Low";
+                },
+                'seeMedium': function() {
+                    this.elementFilter.className = "medium";
+                    this.dropdown();
+                    this.filterText.innerText = "Risk Medium";
+                    this.getFilteredArray('medium');
+                },
+                'seeHigh': function() {
+                    this.elementFilter.className = "high";
+                    this.dropdown();
+                    this.filterText.innerText = "Risk High";
+                    this.getFilteredArray('high');
+                }
+            };
+            
+            filterId[type]();
         }
-    }; 
+    };
    
     app.init();
+    
 })();
