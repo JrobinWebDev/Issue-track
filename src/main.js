@@ -316,7 +316,11 @@
             filterId[type]();
         }
     };
-   
-    app.init();
+    
+    app.init()
     
 })();
+
+
+
+
