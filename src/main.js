@@ -190,14 +190,21 @@
             
             var issues = storage.getStorage();  
             
-            // 'issue.statusText' is set to 'closed' so we can add closing date below.
+            // close the issue
             issues.forEach(function(issue){
                 if (issue.id === id) {
                     issue.statusText = 'Closed';
                     issue.status = true;
                 }
             });
-       
+          
+            storage.setStorage(issues);
+            this.addClosingDate()
+            this.getFilteredArray(filterType);
+        },
+        addClosingDate: function() {
+            var issues = storage.getStorage(); 
+            // add closing date to closed issues
             issues.forEach(function(issue){
                 if (issue.statusText === 'Closed') {
                     issue.statusText = 'Closed on: ' + util.createDate(); 
@@ -205,7 +212,6 @@
             });
             
             storage.setStorage(issues);
-            this.getFilteredArray(filterType);
         },
         deleteClosed: function() {
             var issues = storage.getStorage();  
@@ -320,7 +326,3 @@
     app.init()
     
 })();
-
-
-
-
