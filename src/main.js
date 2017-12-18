@@ -57,22 +57,22 @@
         // caching DOM queries for later.
         cacheDom: function() {
             // relevant to Handlebars.
-            this.template = document.getElementById("issues-template").innerHTML;
+            this.template = document.getElementById('issues-template').innerHTML;
             
             // relevant to form.
-            this.issueCategory = document.getElementById("issueCategoryInput");
-            this.issueDesc = document.getElementById("issueDescInput");
-            this.issueSeverity = document.getElementById("issueSeverityInput");
-            this.issueAssignedTo = document.getElementById("issueAssignedToInput");
-            this.inputForm = document.getElementById("issueInputForm");
+            this.issueCategory = document.getElementById('issueCategoryInput');
+            this.issueDesc = document.getElementById('issueDescInput');
+            this.issueSeverity = document.getElementById('issueSeverityInput');
+            this.issueAssignedTo = document.getElementById('issueAssignedToInput');
+            this.inputForm = document.getElementById('issueInputForm');
             
             // relevant to filters:
             this.filterEl = document.getElementById('issue');
             this.filterButton = document.querySelector('.drop-button');
-            this.elementFilter = document.getElementById("issue");
-            this.filterText = document.getElementById("filterText");
+            this.elementFilter = document.getElementById('issue');
+            this.filterText = document.getElementById('filterText');
             this.dropdownContent = document.getElementById('filterDropdown');
-            this.deleteClosedId = document.getElementById("deleteClosed");
+            this.deleteClosedId = document.getElementById('deleteClosed');
             this.filterId = document.querySelectorAll('a');
             
             // relevant to count.
@@ -119,10 +119,9 @@
             return issue;   
         },
         addIssue: function() {
+            var issues = storage.getStorage();
             // prevent page refresh after issue submission.
             event.preventDefault();
-            
-            var issues = storage.getStorage();
             
             issues.push(app.issue());
             storage.setStorage(issues);
@@ -132,41 +131,41 @@
         },
         bindEvents: function() {
             // form submission listeners
-            this.inputForm.addEventListener("submit", this.addIssue);
+            this.inputForm.addEventListener('submit', this.addIssue);
             
             // filter listeners
-            this.filterButton.addEventListener("click", this.dropdown.bind(this));
+            this.filterButton.addEventListener('click', this.dropdown.bind(this));
             
             for (var i = 0; i < this.filterId.length; i++) {
-                this.filterId[i].addEventListener("click", this.setFilter.bind(this));
+                this.filterId[i].addEventListener('click', this.setFilter.bind(this));
             }
             
-            this.deleteClosedId.addEventListener("click", this.deleteClosed);
+            this.deleteClosedId.addEventListener('click', this.deleteClosed);
             
             // dropdown listeners
-            window.addEventListener("click", this.removeDropdown.bind(this));
+            window.addEventListener('click', this.removeDropdown.bind(this));
             
             // issue listeners 
-            this.elementFilter.addEventListener("click", function(event){
+            this.elementFilter.addEventListener('click', function(event){
                 var clicked = event.target;
                 var issueId = clicked.parentElement.id;
                 
-                if (clicked.id === "deleteButton" ) {
+                if (clicked.id === 'deleteButton' ) {
                     this.deleteIssue(issueId);
                 }
-                if (clicked.id === "statusButton") {
+                if (clicked.id === 'statusButton') {
                     this.closeIssue(issueId);
                 }
             }.bind(this));
         },
         dropdown: function() {
             // toggle filter button dropdowns
-            this.dropdownContent.classList.toggle("show");
+            this.dropdownContent.classList.toggle('show');
         },
         removeDropdown: function(event) {
             // remove dropdowns if user clicks anywhere on window
-            if(!event.target.matches(".drop-button")) {
-                    this.dropdownContent.classList.remove("show");   
+            if(!event.target.matches('.drop-button')) {
+                    this.dropdownContent.classList.remove('show');   
                }
         },
         deleteIssue: function(id) {
@@ -224,7 +223,7 @@
             }
 
             storage.setStorage(issues);
-            app.render();
+            this.render();
         },
         getFilteredArray: function(type) {
             var issues = storage.getStorage();
@@ -279,42 +278,42 @@
             var filterId = {
                 'seeOpen': function() {
                      // set className to current filter.
-                    app.elementFilter.className = "open";
+                    app.elementFilter.className = 'open';
                     // remove filter dropdown. 
                     app.dropdown();
                     // set filter dropdown text.
-                    app.filterText.innerText = " Status Open";
+                    app.filterText.innerText = 'Status Open';
                     // create filtered array
                     app.getFilteredArray('open');
                 },
                 'seeClosed': function() {
-                    app.elementFilter.className = "closed"; 
+                    app.elementFilter.className = 'closed'; 
                     app.dropdown();
-                    app.filterText.innerText = " Status Closed";
+                    app.filterText.innerText = 'Status Closed';
                     app.getFilteredArray('closed');
                 },
                 'seeAll': function() {
-                    app.elementFilter.className = "all";
+                    app.elementFilter.className = 'all';
                     app.dropdown();
-                    app.filterText.innerText = "All";
+                    app.filterText.innerText = 'All';
                     app.getFilteredArray('all');  
                 },
                 'seeLow': function() {
-                    app.elementFilter.className = "low";
+                    app.elementFilter.className = 'low';
                     app.dropdown();
-                    app.filterText.innerText = "Risk Low";
+                    app.filterText.innerText = 'Risk Low';
                     app.getFilteredArray('low');
                 },
                 'seeMedium': function() {
                     app.elementFilter.className = "medium";
                     app.dropdown();
-                    app.filterText.innerText = "Risk Medium";
+                    app.filterText.innerText = 'Risk Medium';
                     app.getFilteredArray('medium');
                 },
                 'seeHigh': function() {
-                    app.elementFilter.className = "high";
+                    app.elementFilter.className = 'high';
                     app.dropdown();
-                    app.filterText.innerText = "Risk High";
+                    app.filterText.innerText = 'Risk High';
                     app.getFilteredArray('high');
                 }
             };
