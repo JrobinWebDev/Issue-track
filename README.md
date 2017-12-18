@@ -5,6 +5,6 @@ Issue Track is a simple issue tracker that makes logging and tracking issues/bug
 
 ## Features
 
-* Users can submit issues based on 'type' and 'severity'
-* Issues can be filtered by status as well as by severity
-* localStorage used to persist issue data
+* Users can submit issues based on 'type' and 'severity'.
+* Issues can be filtered by 'status' (open or closed) as well as by 'severity'.
+* localStorage used to persist issue data.
