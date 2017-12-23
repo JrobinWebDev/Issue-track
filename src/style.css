@@ -3,7 +3,7 @@
 }
 
 body{
-    background: white;
+    background: rgba(0, 0, 0, 0.8);
     line-height: 1.5;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     padding: 1em;
@@ -26,22 +26,22 @@ figure {
 
 .title {
 	background-color: rgba(66,139,202, 1);
-	padding: 5px;
+	padding: 20px;
 }
 
 .title h1 {
     text-align: center;
-    color: whitesmoke;
-	margin: 0;
-	font-weight: 600;
-	text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
+    color: rgba(245, 245, 245, 1);
+    margin: 0;
+    font-weight: 600;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
 }
 
 .title h3{
-    color: whitesmoke;
+    color: rgba(245, 245, 245, 1);
     text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
     font-weight: 100;
-	text-align: center;
+    text-align: center;
 	margin: 0;
 	font-size: 1.1em;
 }
@@ -58,9 +58,9 @@ figure {
 }
         
 .issue-form{
-    border: 3px solid rgba(66,139,202, 1);;
-	border-radius: 5px;
-    background: whitesmoke;
+    border: 3px solid rgba(245, 245, 245, 0.8);
+    border-radius: 5px;
+    background: rgba(245, 245, 245, 1);
     width: 80%;
     margin: auto;
     margin-top: 10px;
@@ -79,12 +79,11 @@ nav{
     width: 60%;
     margin: auto;
     margin-top: 10px;
-    border: 3px solid rgba(66,139,202, 1);;
+    border: 3px solid rgba(245, 245, 245, 0.8);
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background: whitesmoke;
+    background: rgba(245, 245, 245, 1);
     position: relative;
-
 }
 
 nav ul {
@@ -132,41 +131,53 @@ nav li{
 }
 
 .issue-form button{
+    color: rgba(245, 245, 245, 1);
+    position: relative;
     margin-top: 10px;
-    background: #BADA55;
+    background-color: rgba(66,139,202, 0.9);
     max-width: auto;
     cursor: pointer;
     font-size: 15px;
-    border: 1px solid #BADA55;
+    border: none;
+    outline: none;
     border-radius: 5px;
+    box-shadow: 0 4px rgba(66,139,202, 1);
 }
 
-.issue-form button:hover, issue-form button:focus{
-    background: #BADA55;
-    color: white;
-    outline: 0;
-    transition: all 0.4s;
-    -webkit-transition: all 0.4s;
-    -moz-transition: all 0.4s;
+.issue-form button:hover{
+    box-shadow: none;
+    top: 2px;
+} 
+
+.issue-form button:active{
+    box-shadow: none;
+    top: 3px;
 } 
 
 /*BUTTON NAV*/
 
 .delete-closed{
+    color: rgba(245, 245, 245, 1);
+    position: relative;
     border-radius: 5px;
     padding: 11px;
     font-size: 13.5px;
-    border: 1px solid #FF4136;
-    background: #FF4136;
+    border: none;
+    outline: none;
+    background-color: rgba(217,83,79, 0.9);
     margin-left: 30px;
     cursor: pointer;
+    box-shadow: 0 4px rgba(217,83,79, 1);
 }
 
 .delete-closed:hover{
-    color: white;
-    transition: all 0.4s;
-    -webkit-transition: all 0.4s;
-    -moz-transition: all 0.4s;
+    box-shadow: none;
+    top: 2px;
+}
+
+.delete-closed:active{
+    box-shadow: none;
+    top: 3px;
 }
 
 hr{
@@ -181,8 +192,8 @@ hr{
 
 .drop-button{
     background-color: rgba(92,184,92, 0.8);
-    color: black;
-	position: relative;
+    color: rgba(245, 245, 245, 1);
+    position: relative;
     width: 110px;
     padding: 11px;
     font-size: 13.5px;
@@ -194,9 +205,8 @@ hr{
 }
 
 .drop-button:hover{
-	box-shadow: none;
-	top: 2px;
-    color: white;
+    box-shadow: none;
+    top: 2px;
 }
 
 .drop-button:active{
@@ -243,14 +253,12 @@ hr{
 /*COUNTER*/
 
 #count{
-    background: #BADA55;
-    border-radius: 5px;
     text-align: center;
     font-size: 0.8em;
     padding: 5px;
     display: inline;
     float: right;
-    margin-top: -45px;
+    margin-top: -38px;
 }
 
 /*ISSUES*/
@@ -260,7 +268,7 @@ hr{
     height: auto;
     max-height: 80px;
     max-width: 80px;
-	margin-left: 20px;
+    margin-left: 20px;
     text-align: left;
     display: block;
     margin-bottom: -30px;
@@ -283,7 +291,7 @@ hr{
     margin-top: 60px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 5px;
-    background: whitesmoke;
+    background: rgba(245, 245, 245, 1);
     border: 2px solid #BADA55;
 }
 
@@ -295,7 +303,7 @@ hr{
     border-radius: 5px;
     border: 3px solid #DDD;
     min-height: 100px;
-    background: white;
+    background-color: rgba(245, 245, 245, 1);
     word-wrap: break-word;
     padding: 1em;
 }
@@ -323,7 +331,7 @@ hr{
 }
 
 .issue-closed:hover, .issue-delete:hover{
-    color: white;
+    color: rgba(245, 245, 245, 1);
     transition: all 0.4s;
     -webkit-transition: all 0.4s;
     -moz-transition: all 0.4s;
@@ -331,7 +339,7 @@ hr{
 
 .issue-closed-true{
     margin-left: auto;
-    background-color: whitesmoke;
+    background-color: rgba(245, 245, 245, 1);
     color: black;
     width: 100px;
     padding: 11px;
