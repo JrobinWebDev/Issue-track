@@ -140,7 +140,7 @@
                 this.filterId[i].addEventListener('click', this.setFilter.bind(this));
             }
             
-            this.deleteClosedId.addEventListener('click', this.deleteClosed);
+            this.deleteClosedId.addEventListener('click', this.deleteClosed.bind(this));
             
             // dropdown listeners
             window.addEventListener('click', this.removeDropdown.bind(this));
