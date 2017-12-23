@@ -7,8 +7,8 @@ body{
     line-height: 1.5;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     padding: 1em;
-		margin: 0;
-		padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 .container{
@@ -32,18 +32,18 @@ figure {
 .title h1 {
     text-align: center;
     color: whitesmoke;
-		margin: 0;
-		font-weight: 600;
-		text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
+	margin: 0;
+	font-weight: 600;
+	text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
 }
 
 .title h3{
     color: whitesmoke;
     text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
     font-weight: 100;
-		text-align: center;
-		margin: 0;
-		font-size: 1.1em;
+	text-align: center;
+	margin: 0;
+	font-size: 1.1em;
 }
 
 #logo{
@@ -54,11 +54,12 @@ figure {
     display: block;
     margin-left: auto;
     margin-right: auto;
-		margin-bottom: -8px
+	margin-bottom: -8px
 }
-
+        
 .issue-form{
-    border: 2px solid #BADA55;
+    border: 3px solid rgba(66,139,202, 1);;
+	border-radius: 5px;
     background: whitesmoke;
     width: 80%;
     margin: auto;
@@ -78,7 +79,7 @@ nav{
     width: 60%;
     margin: auto;
     margin-top: 10px;
-    border: 2px solid #BADA55;
+    border: 3px solid rgba(66,139,202, 1);;
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background: whitesmoke;
@@ -179,21 +180,28 @@ hr{
 /*DROPDOWN BUTTON*/
 
 .drop-button{
-    background-color: #BADA55;
+    background-color: rgba(92,184,92, 0.8);
     color: black;
+	position: relative;
     width: 110px;
     padding: 11px;
     font-size: 13.5px;
-    border: 1px solid #BADA55;
+    border: none;
+	outline: none;
     border-radius: 5px;
     cursor: pointer;
+	box-shadow: 0 4px rgba(92,184,92, 1);
 }
 
 .drop-button:hover{
+	box-shadow: none;
+	top: 2px;
     color: white;
-    transition: all 0.4s;
-    -webkit-transition: all 0.4s;
-    -moz-transition: all 0.4s;
+}
+
+.drop-button:active{
+	box-shadow: none;
+	top: 3px;
 }
 
 .dropdown-menu{
@@ -252,6 +260,7 @@ hr{
     height: auto;
     max-height: 80px;
     max-width: 80px;
+	margin-left: 20px;
     text-align: left;
     display: block;
     margin-bottom: -30px;
