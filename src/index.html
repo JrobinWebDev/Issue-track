@@ -7,15 +7,15 @@
     <title>Issue Track</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="shortcut icon" href="/icons/favicon.ico">
-</head>       
+</head>
     <body>
-    
+      
         <!--==============================Logo=============================-->
         <div class="title">
         	<figure>
             	<img src="/icons/cogs-icon.png" id="logo" alt="cog icon">
             </figure>
-            <h1 >Issue Track</h1> 
+            <h1 >Issue Track</h1>
             <h3>The simple issue tracker</h3>
         </div>
 
@@ -39,7 +39,7 @@
                         </p>
                         <p>
                             <label for="issueDescInput">Description</label>
-                            <textarea id="issueDescInput" placeholder="Issue info..." rows="5" required></textarea>
+                            <textarea id="issueDescInput" placeholder="Issue info..." rows="5" maxlength="400" required></textarea>
                         </p>
                         <p>
                             <label for="issueSeverityInput">Risk</label>
@@ -54,7 +54,7 @@
                             <button type="submit">Submit</button>
                         </p>
                         <div id="count"></div>
-                    </form>              
+                    </form>
                 </div>
                     <nav>
                         <ul>
@@ -77,7 +77,7 @@
                                 <button id="deleteClosed" class="delete-closed">Delete Closed</button>
                             </li>
                         </ul>
-                    </nav> 
+                    </nav>
                     <!--==================================Issues====================================-->
                     <div id="issue" class="all">
                 </div>
@@ -97,7 +97,7 @@
                 </figure>
                 <div id={{id}} class="issue-content">
                     <div class="content">
-                        <p> 
+                        <p>
                             <p>
                                 <strong>Category:</strong> &nbsp {{category}}
                             </p>
@@ -137,11 +137,11 @@
             {{/this}}
 
           </script>
-       
+
         <!--==============================Script tags=============================-->
-       
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
         <script src="main.js"></script>
-           
+
     </body>
 </html>
