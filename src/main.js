@@ -17,7 +17,7 @@
             var issues = JSON.parse(localStorage.getItem('issues'));
             return issues;
         }
-    };
+    }; 
     
     var util = {
         // creation of unique issue id - used to close and delete issues.
@@ -147,12 +147,19 @@
             
             // issue listeners 
             this.elementFilter.addEventListener('click', function(event){
+                var self = this;
                 var clicked = event.target;
                 var issueId = clicked.parentElement.id;
                 
                 if (clicked.id === 'deleteButton' ) {
-                    this.deleteIssue(issueId);
+                    // add transition
+                    this.deleteTransition(event);
+                    // allow time for transition then delete issue
+                    setTimeout(function() {
+                        self.deleteIssue(issueId);
+                    }, 700)
                 }
+                
                 if (clicked.id === 'statusButton') {
                     this.closeIssue(issueId);
                 }
@@ -168,13 +175,18 @@
                     this.dropdownContent.classList.remove('show');   
                }
         },
+        deleteTransition: function(event) {
+            var issueToDelete = event.target.parentElement.parentElement;
+            // add transition class
+            issueToDelete.classList.add('delete-transition');
+        },
         deleteIssue: function(id) {
             // grab the current filter
             var filterType = this.filterEl.className;
     
             var issues = storage.getStorage();
 
-            issues.forEach(function(issue,index){
+            issues.forEach(function(issue, index){
                 if (issue.id === id) {
                     issues.splice(index, 1);
                 }
@@ -213,17 +225,22 @@
             storage.setStorage(issues);
         },
         deleteClosed: function() {
-            var issues = storage.getStorage();  
+            var self = this;
+            var issueContainer = document.querySelector('.issue');
+            var issues = storage.getStorage();
+            // add transition class to all issues
+            issueContainer.classList.add('delete-transition');
             
-            // decrement loop removes closed issues.
-            for (var i = issues.length -1; i >= 0; i--) {
-                if(issues[i].status === true) {
-                    issues.splice(i, 1);
+            // decrement loop removes closed issues after transition.
+            setTimeout(function() {
+                for (var i = issues.length -1; i >= 0; i--) {
+                    if(issues[i].status === true) {
+                        issues.splice(i, 1);
+                    }
                 }
-            }
-
-            storage.setStorage(issues);
-            this.render();
+                storage.setStorage(issues);
+                self.render();
+            }, 700);
         },
         getFilteredArray: function(type) {
             var issues = storage.getStorage();
