@@ -165,7 +165,6 @@ nav li{
     border: none;
     outline: none;
     background-color: rgba(217,83,79, 0.9);
-    margin-left: 30px;
     cursor: pointer;
     box-shadow: 0 4px rgba(217,83,79, 1);
 }
@@ -194,6 +193,7 @@ nav li{
     background-color: rgba(92,184,92, 0.8);
     color: rgba(245, 245, 245, 1);
     position: relative;
+    margin-right: 20px;
     width: 110px;
     padding: 11px;
     font-size: 13.5px;
@@ -389,11 +389,8 @@ nav li{
     border-radius: 5px;
 }
 
-/*SMALL SCREENS*/
-
-@media(min-width: 300px){
-    
-    .delete-closed {
-        margin: 10px;
+@media screen and (min-width: 1000px) {
+    .drop-button{
+        margin-right: 100px;
     }
 }
