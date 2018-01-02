@@ -12,7 +12,7 @@
       
         <!--==============================Logo=============================-->
         <div class="title">
-        	<figure>
+            <figure>
             	<img src="/icons/cogs-icon.png" id="logo" alt="cog icon">
             </figure>
             <h1 >Issue Track</h1>
@@ -100,21 +100,26 @@
                         <p>
                             <p>
                                 <strong>Category:</strong> &nbsp {{category}}
+                                <hr>
                             </p>
                             <p>
                                 <strong>Assigned to:</strong> &nbsp {{assignedTo}}
+                                <hr>
                             </p>
                             {{#if status}}
                             <p>
                                 <strong>Issue Status:</strong> <strong class="status-closed">{{statusText}}</strong>
+                                <hr>
                             </p>
                             {{else}}
                             <p>
                                 <strong>Issue Status:</strong> <strong class="status-open">{{statusText}}</strong>
+                                <hr>
                             </p>
                             {{/if}}
                             <p>
                                 <strong>Issued on:</strong> &nbsp {{date}}
+                                <hr>
                             </p>
                             <div class="description">
                                 {{description}}
