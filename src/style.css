@@ -3,7 +3,9 @@
 }
 
 body{
-    background: rgba(0, 0, 0, 0.8);
+    background: #4b6cb7; 
+    background: -webkit-linear-gradient(to right, #182848, #4b6cb7);  
+    background: linear-gradient(to right, #182848, #4b6cb7); 
     line-height: 1.5;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     padding: 1em;
@@ -13,7 +15,7 @@ body{
 
 .container{
     max-width: 1000px;
-    min-width: 600px;
+    min-width: 500px;
     width: 80%;
     margin-left: auto;
     margin-right: auto;
@@ -25,7 +27,6 @@ figure {
 }
 
 .title {
-    background-color: rgba(66,139,202, 1);
     padding: 20px;
 }
 
@@ -58,13 +59,15 @@ figure {
 }
         
 .issue-form{
-    border: 3px solid rgba(245, 245, 245, 0.8);
+    border: 3px solid rgba(245, 245, 245, 0.1);
     border-radius: 5px;
-    background: rgba(245, 245, 245, 1);
+    background-color: whitesmoke;
     width: 80%;
     margin: auto;
     margin-top: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color: #182848;
+    font-size: 1.2em;
 }
 
 .wrapper > *{
@@ -79,10 +82,10 @@ nav{
     width: 60%;
     margin: auto;
     margin-top: 10px;
-    border: 3px solid rgba(245, 245, 245, 0.8);
+    border: 3px solid rgba(245, 245, 245, 0.1);
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background: rgba(245, 245, 245, 1);
+    background-color: whitesmoke;
     position: relative;
 }
 
@@ -286,10 +289,19 @@ nav li{
 }
 
 .content hr{
-    margin-top: -10px;
-    opacity: 0.6;
-    color: rgba(0, 0, 0, 0.8);
+    border: 0;
+    width: 77%;
+    margin-left: 22%;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, #182848, #4b6cb7);
 }
+
+.category{
+    padding-right: 18px;
+}
+
+
 
 .issue{
     width: 80%;
@@ -361,7 +373,6 @@ nav li{
 }
 
 .id{
-    border-bottom: 2px solid #BADA55;
     display: inline;
     font-size: 12.5px;
     float: right;
