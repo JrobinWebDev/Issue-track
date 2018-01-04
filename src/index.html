@@ -9,18 +9,16 @@
     <link rel="shortcut icon" href="/icons/favicon.ico">
 </head>
     <body>
-      
-        <!--==============================Logo=============================-->
-        <div class="title">
-            <figure>
-            	<img src="/icons/cogs-icon.png" id="logo" alt="cog icon">
-            </figure>
-            <h1 >Issue Track</h1>
-            <h3>The simple issue tracker</h3>
-        </div>
-
-            <!--==============================Form=============================-->
         <div class="container">
+            <!--==============================Title=============================-->
+            <div class="title">
+                <figure>
+            	   <img src="/icons/cogs-icon.png" id="logo" alt="cog icon">
+                </figure>
+                <h1 >Issue Track</h1>
+                <h3>The simple issue tracker</h3>
+        </div>
+            <!--==============================Form=============================-->
             <div class="wrapper">
                 <div class="issue-form">
                     <form id="issueInputForm">
@@ -99,11 +97,11 @@
                     <div class="content">
                         <p>
                             <p>
-                                <strong>Category:</strong> &nbsp {{category}}
+                                <strong>Category:</strong>{{category}}
                                 <hr>
                             </p>
                             <p>
-                                <strong>Assigned to:</strong> &nbsp {{assignedTo}}
+                                <strong>Assigned to:</strong>{{assignedTo}}
                                 <hr>
                             </p>
                             {{#if status}}
@@ -118,7 +116,7 @@
                             </p>
                             {{/if}}
                             <p>
-                                <strong>Issued on:</strong> &nbsp {{date}}
+                                <strong>Issued on:</strong>{{date}}
                                 <hr>
                             </p>
                             <div class="description">
