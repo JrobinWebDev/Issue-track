@@ -76,7 +76,7 @@
                             </li>
                         </ul>
                     </nav>
-                    <!--==================================Issues====================================-->
+           <!--==================================Issues====================================-->
                     <div id="issue" class="all">
                 </div>
             </div>
@@ -97,26 +97,26 @@
                     <div class="content">
                         <p>
                             <p>
-                                <strong>Category:</strong>{{category}}
+                                <strong class="category">Category:</strong>{{category}}
                                 <hr>
                             </p>
                             <p>
-                                <strong>Assigned to:</strong>{{assignedTo}}
+                                <strong class="assigned">Assigned to:</strong>{{assignedTo}}
                                 <hr>
                             </p>
                             {{#if status}}
-                            <p>
-                                <strong>Issue Status:</strong> <strong class="status-closed">{{statusText}}</strong>
+                            <p class="status-p">
+                                <strong class="status">Issue Status:</strong> <strong class="status-closed">{{statusText}}</strong>
                                 <hr>
                             </p>
                             {{else}}
-                            <p>
-                                <strong>Issue Status:</strong> <strong class="status-open">{{statusText}}</strong>
+                            <p class="status-p">
+                                <strong class="status">Issue Status:</strong> <strong class="status-open">{{statusText}}</strong>
                                 <hr>
                             </p>
                             {{/if}}
-                            <p>
-                                <strong>Issued on:</strong>{{date}}
+                            <p class="issued-on-p">
+                                <strong class="issued-on">Issued on:</strong>{{date}}
                                 <hr>
                             </p>
                             <div class="description">
