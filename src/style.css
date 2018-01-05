@@ -14,9 +14,11 @@ body{
 }
 
 .container{
-    max-width: 1000px;
-    min-width: 500px;
+    display: flex;
+    flex-direction: column;
     width: 80%;
+    max-width: 1000px;
+    min-width: 360px;
     margin-left: auto;
     margin-right: auto;
     padding: 1em;
@@ -67,7 +69,8 @@ figure {
     margin-top: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     color: #182848;
-    font-size: 1.2em;
+    font-size: 1.1em;
+    font-weight: bold;
 }
 
 .wrapper > *{
@@ -75,7 +78,7 @@ figure {
 }
 
 .wrapper{
-    min-height: 800px;
+    height: 100%;
 }
 
 nav{
@@ -104,6 +107,7 @@ nav li{
 /*FORM STYLES*/
 
 .issue-form label{
+    padding-bottom: 5px;
     display: block;
 }
 
@@ -117,8 +121,7 @@ nav li{
 }
 
 .issue-form select{
-    width: 30%;
-    max-width: 140px;
+    width: 411px;
 }
 
 .issue-form textarea, .issue-form select, .issue-form input{
@@ -141,20 +144,14 @@ nav li{
     max-width: auto;
     cursor: pointer;
     font-size: 15px;
+    letter-spacing: 1px;
     border: none;
     outline: none;
     border-radius: 5px;
-    box-shadow: 0 4px rgba(66,139,202, 1);
 }
 
 .issue-form button:hover{
-    box-shadow: none;
-    top: 2px;
-} 
-
-.issue-form button:active{
-    box-shadow: none;
-    top: 3px;
+    background-color: rgba(66,139,202, 1);
 } 
 
 /*BUTTON NAV*/
@@ -165,56 +162,43 @@ nav li{
     border-radius: 5px;
     padding: 11px;
     font-size: 13.5px;
+    letter-spacing: 1px;
     border: none;
     outline: none;
     background-color: rgba(217,83,79, 0.9);
     cursor: pointer;
-    box-shadow: 0 4px rgba(217,83,79, 1);
 }
 
 .delete-closed:hover{
-    box-shadow: none;
-    top: 2px;
-}
-
-.delete-closed:active{
-    box-shadow: none;
-    top: 3px;
+    background-color: rgba(217,83,79, 1);
 }
 
 .dropdown-content hr{
     border: 0;
     width: 90%;
     height: 1px;
-    background: #333;
-    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+    background-color: rgba(92,184,92, 1);
 }
 
 /*DROPDOWN BUTTON*/
 
 .drop-button{
-    background-color: rgba(92,184,92, 0.8);
+    background-color: rgba(92,184,92, 0.9);
     color: rgba(245, 245, 245, 1);
     position: relative;
     margin-right: 20px;
-    width: 110px;
+    width: 119.8px;
     padding: 11px;
     font-size: 13.5px;
+    letter-spacing: 1px;
     border: none;
     outline: none;
     border-radius: 5px;
     cursor: pointer;
-    box-shadow: 0 4px rgba(92,184,92, 1);
 }
 
 .drop-button:hover{
-    box-shadow: none;
-    top: 2px;
-}
-
-.drop-button:active{
-    box-shadow: none;
-    top: 3px;
+    background-color: rgba(92,184,92, 1);
 }
 
 .dropdown-menu{
@@ -225,15 +209,17 @@ nav li{
 .dropdown-content{
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: whitesmoke;
     width: 110px;
+    color: rgba(92,184,92, 1);
+    font-weight: bold;
     border-radius: 5px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    margin-bottom: 10px;
 }
 
 .dropdown-content a {
-    color: black;
     font-size: 13px;
     padding: 10px 2px;
     text-decoration: none;
@@ -241,12 +227,9 @@ nav li{
 }
 
 .dropdown-content a:hover {
-    background-color: #BADA55;
-    border: 0.5px solid grey;
+    border: 0.1px solid grey;
     cursor: default;
-    transition: all 0.4s;
-    -webkit-transition: all 0.4s;
-    -moz-transition: all 0.4s;
+    background-color: rgba(92,184,92, 0.1);
 }
 
 .show {
@@ -290,8 +273,7 @@ nav li{
 
 .content hr{
     border: 0;
-    width: 77%;
-    margin-left: 22%;
+    width: 85%;
     height: 1px;
     background: #333;
     background-image: linear-gradient(to right, #182848, #4b6cb7);
@@ -300,8 +282,6 @@ nav li{
 .category{
     padding-right: 18px;
 }
-
-
 
 .issue{
     width: 80%;
@@ -322,6 +302,11 @@ nav li{
     padding: 1.5em;
 }
 
+.category, .assigned, .status, .issued-on{
+    margin-left: 8%;
+    padding-right: 5px;
+}
+
 .description{
     border-radius: 5px;
     border: 3px solid #DDD;
@@ -335,39 +320,43 @@ nav li{
     border-radius: 5px;
     padding: 11px;
     font-size: 12.5px;
-    border: 1px solid #FF4136;
-    background: #FF4136;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(217,83,79, 0.9);
+    background-color: rgba(217,83,79, 0.9);
     margin-left: 30px;
+    color: rgba(245, 245, 245, 1);
     cursor: pointer;
 }
 
 .issue-closed{
     margin-left: auto;
-    background-color: #BADA55;
-    color: black;
+    background-color: rgba(92,184,92, 0.9);
+    color: rgba(245, 245, 245, 1);
     width: 100px;
     padding: 11px;
     font-size: 12.5px;
-    border: 1px solid #BADA55;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(92,184,92, 0.9);
     border-radius: 5px;
     cursor: pointer;    
 }
 
-.issue-closed:hover, .issue-delete:hover{
-    color: rgba(245, 245, 245, 1);
-    transition: all 0.4s;
-    -webkit-transition: all 0.4s;
-    -moz-transition: all 0.4s;
+.issue-closed:hover{
+    background-color: rgba(92,184,92, 1);
+}
+
+.issue-delete:hover{
+    background-color: rgba(217,83,79, 1);
 }
 
 .issue-closed-true{
     margin-left: auto;
-    background-color: rgba(245, 245, 245, 1);
-    color: black;
+    background-color: rgba(92,184,92, 0.6);
+    color: rgba(245, 245, 245, 1);
     width: 100px;
     padding: 11px;
     font-size: 12.5px;
-    border: 1px solid #BADA55;
+    border: 1px solid rgba(92,184,92, 0.6);
     border-radius: 5px;
     cursor: pointer;  
 }
@@ -377,6 +366,7 @@ nav li{
     font-size: 12.5px;
     float: right;
     margin-right: -20px;
+    margin-top: 15px
 }
 
 .severity{
@@ -386,22 +376,130 @@ nav li{
 }
 
 .status-open{
-    background-color: #BADA55;
-    border: 1px solid #BADA55;
-    border-radius: 5px;
-    padding: 2px;
+    background-color: rgba(92,184,92, 0.8);
+    border: 1px solid rgba(92,184,92, 0.8);
+    border-radius: 2px;
+    padding: 3px;
     width: 40%;
 }
 
 .status-closed{
-    background-color: #FF4136;
-    border: 1px solid #FF4136;
+    background-color: rgba(217,83,79, 0.8);
+    border: 1px solid rgba(217,83,79, 0.8);
     opacity: 0.8;
-    border-radius: 5px;
+    border-radius: 2px;
+    padding: 3px;
 }
+
+/*MEDIA QUERIES*/
 
 @media screen and (min-width: 1000px) {
     .drop-button{
         margin-right: 100px;
+    }
+}
+
+@media screen and (max-width: 860px) {
+    
+    .issue-form select{
+        width: 95%;
+    }
+    
+    .drop-button{
+        margin: auto;
+        margin-bottom: 5px;
+    }    
+    
+    .issued-on, .status{
+        margin-left: 0;
+    }
+    
+    .status-p{
+        padding-left: 7%;
+        line-height: 1.85em;
+    }
+    
+    .issued-on-p{
+        padding-left: 8%;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .issue-delete{
+        margin: auto;
+        width: 90px;
+        padding: 9px;
+        letter-spacing: 1px;
+        margin-top: 5px;
+        font-size: 0.8em;
+    }
+    
+    .issue-closed{
+        width: 90px;
+        letter-spacing: 1px;
+        padding: 9px;
+        font-size: 0.8em;
+    }
+    
+    #statusButton:disabled{
+        width: 90px;
+        letter-spacing: 1px;
+        padding: 9px;
+        font-size: 0.8em;
+}
+    
+    .id{
+        font-size: 10px;
+        margin-top: 15px
+    }
+    
+    .severity{
+        margin-left: 2px;
+        font-weight: bold;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    
+    .issue-form{
+        display: flex;
+        padding: 0;
+    }
+    
+    .img{
+        max-height: 70px;
+        max-width: 70px;
+        margin-bottom: -40px;
+    }
+    
+    .issue-form label{
+        font-size: 0.9em;
+    }
+
+    #count{
+        font-size: 0.7em;
+        margin-top: -55px;
+        margin-right: -20px;
+    }
+    
+    .delete-closed{
+        margin: auto;
+    }
+    
+    .issue-content {
+        font-size: 0.9em;
+        margin: auto;
+    }
+    
+    .issued-on, .status{
+        margin-left: 0;
+    }
+    
+    .status-p{
+        padding-left: 7%;
+    }
+    
+    .issued-on-p{
+        padding-left: 7%;
     }
 }
