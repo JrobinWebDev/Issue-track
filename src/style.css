@@ -74,7 +74,6 @@ figure {
 }
 
 form{
-    padding: 10px;
     width: 100%;
 }
 
@@ -407,6 +406,14 @@ nav li{
         width: 95%;
     }
     
+    .issue-form{
+        display: flex;
+    }
+    
+    form{
+        padding: 0 25px 0 0;
+    }
+    
     .drop-button{
         margin: auto;
         margin-bottom: 5px;
@@ -462,14 +469,6 @@ nav li{
 }
 
 @media screen and (max-width: 500px) {
-    
-    .issue-form{
-        display: flex;
-    }
-    
-    form{
-        padding: 0 18px 0 0;
-    }
     
     .issue-form select, #issueDescInput{
         width: 95%;
