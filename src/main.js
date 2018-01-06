@@ -118,7 +118,7 @@
             
             return issue;   
         },
-        addIssue: function() {
+        addIssue: function(event) {
             var issues = storage.getStorage();
             // prevent page refresh after issue submission.
             event.preventDefault();
@@ -226,21 +226,38 @@
         },
         deleteClosed: function() {
             var self = this;
+            var closedIssues;
             var issueContainer = document.querySelector('.issue');
             var issues = storage.getStorage();
-            // add transition class to all issues
-            issueContainer.classList.add('delete-transition');
             
-            // decrement loop removes closed issues after transition.
-            setTimeout(function() {
-                for (var i = issues.length -1; i >= 0; i--) {
-                    if(issues[i].status === true) {
-                        issues.splice(i, 1);
+            // check that we have issues and whether we have any closed
+            closedIssues = this.checkForClosed(issues);
+            // if we do then run the animation and delete closed issues
+            if (closedIssues) {
+                // add transition class to all issues
+                issueContainer.classList.add('delete-transition');
+            
+                // decrement loop removes closed issues after transition.
+                setTimeout(function() {
+                    for (var i = issues.length -1; i >= 0; i--) {
+                        if(issues[i].status === true) {
+                            issues.splice(i, 1);
+                        }
                     }
-                }
-                storage.setStorage(issues);
-                self.render();
-            }, 700);
+                    storage.setStorage(issues);
+                    self.render();
+                }, 700);
+                
+            } else {
+
+                return;
+            }
+        },
+        checkForClosed: function(issues) {
+            // check for any closed issues
+            return issues.some(function(issue) {
+                return issue.status;
+            })  
         },
         getFilteredArray: function(type) {
             var issues = storage.getStorage();
