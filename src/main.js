@@ -147,7 +147,6 @@
             
             // issue listeners 
             this.elementFilter.addEventListener('click', function(event){
-                var self = this;
                 var clicked = event.target;
                 var issueId = clicked.parentElement.id;
                 
@@ -156,8 +155,8 @@
                     this.deleteTransition(event);
                     // allow time for transition then delete issue
                     setTimeout(function() {
-                        self.deleteIssue(issueId);
-                    }, 700)
+                        this.deleteIssue(issueId);
+                    }.bind(this), 700)
                 }
                 
                 if (clicked.id === 'statusButton') {
