@@ -156,7 +156,7 @@
                     // allow time for transition then delete issue
                     setTimeout(function() {
                         this.deleteIssue(issueId);
-                    }.bind(this), 700)
+                    }.bind(this), 700);
                 }
                 
                 if (clicked.id === 'statusButton') {
@@ -209,7 +209,7 @@
             });
           
             storage.setStorage(issues);
-            this.addClosingDate()
+            this.addClosingDate();
             this.getFilteredArray(filterType);
         },
         addClosingDate: function() {
@@ -256,7 +256,7 @@
             // check for any closed issues
             return issues.some(function(issue) {
                 return issue.status;
-            })  
+            });  
         },
         getFilteredArray: function(type) {
             var issues = storage.getStorage();
@@ -355,6 +355,6 @@
         }
     };
     
-    app.init()
+    app.init();
     
 })();
