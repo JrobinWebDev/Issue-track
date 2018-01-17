@@ -130,6 +130,10 @@ nav li{
     width: 411px;
 }
 
+.issue-form textarea{
+    overflow: auto; 
+}
+
 .issue-form textarea, .issue-form select, .issue-form input{
     padding: 5px;
     border: 0.5px solid grey;
