@@ -5,6 +5,7 @@
 body{
     background: #4b6cb7; 
     background: -webkit-linear-gradient(to right, #182848, #4b6cb7);  
+    background: -webkit-linear-gradient(left, #182848, #4b6cb7);  
     background: linear-gradient(to right, #182848, #4b6cb7); 
     line-height: 1.5;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
@@ -14,8 +15,13 @@ body{
 }
 
 .container{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     width: 80%;
     max-width: 1000px;
     min-width: 360px;
@@ -286,6 +292,7 @@ nav li{
     width: 85%;
     height: 1px;
     background: #333;
+    background-image: -webkit-linear-gradient(left, #182848, #4b6cb7);
     background-image: linear-gradient(to right, #182848, #4b6cb7);
 }
 
@@ -301,11 +308,13 @@ nav li{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 5px;
     border: 3px solid rgba(245, 245, 245, 0.8);
+    -webkit-transition: opacity 0.7s;
     transition: opacity 0.7s;
 }
 
 .delete-transition{
     opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
 }
 
 .issue-content, .id-severity{
@@ -397,6 +406,7 @@ nav li{
     background-color: rgba(217,83,79, 0.8);
     border: 1px solid rgba(217,83,79, 0.8);
     opacity: 0.8;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
     border-radius: 2px;
     padding: 3px;
 }
@@ -416,6 +426,8 @@ nav li{
     }
     
     .issue-form{
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
     }
     
