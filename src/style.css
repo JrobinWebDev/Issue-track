@@ -9,7 +9,6 @@ body{
     background: linear-gradient(to right, #182848, #4b6cb7); 
     line-height: 1.5;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
-    padding: 1em;
     margin: 0;
     padding: 0;
 }
@@ -48,7 +47,7 @@ figure {
 
 .title h3{
     color: rgba(245, 245, 245, 1);
-    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     font-weight: 100;
     text-align: center;
     margin: 0;
@@ -230,7 +229,7 @@ nav li{
     color: rgba(92,184,92, 1);
     font-weight: bold;
     border-radius: 5px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     z-index: 1;
     margin-bottom: 10px;
 }
