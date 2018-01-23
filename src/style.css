@@ -29,15 +29,15 @@ body{
     padding: 1em;
 }
 
-figure {
+figure{
     margin: 0;
 }
 
-.title {
+.title{
     padding: 20px;
 }
 
-.title h1 {
+.title h1{
     text-align: center;
     color: rgba(245, 245, 245, 1);
     margin: 0;
@@ -54,7 +54,7 @@ figure {
     font-size: 1.1em;
 }
 
-h1 strong {
+h1 strong{
     color: rgba(0, 0, 0, 0.5);
     font-size: 1.25em
 }
@@ -103,7 +103,7 @@ nav{
     padding: 15px;
 }
 
-nav ul {
+nav ul{
     padding: 0;
     margin: auto;
     list-style: none;
@@ -189,7 +189,7 @@ nav li{
 }
 
 .dropdown-content hr{
-    border: 0;
+    border: none;
     width: 90%;
     height: 1px;
     background-color: rgba(92,184,92, 1);
@@ -454,28 +454,17 @@ nav li{
 }
 
 @media screen and (max-width: 550px) {
+    .issue-delete, .issue-closed, #statusButton:disabled{
+        width: 90px;
+        padding: 9px;
+        letter-spacing: 1px;
+        font-size: 0.8em;
+    }
+    
     .issue-delete{
         margin: auto;
-        width: 90px;
-        padding: 9px;
-        letter-spacing: 1px;
         margin-top: 5px;
-        font-size: 0.8em;
     }
-    
-    .issue-closed{
-        width: 90px;
-        letter-spacing: 1px;
-        padding: 9px;
-        font-size: 0.8em;
-    }
-    
-    #statusButton:disabled{
-        width: 90px;
-        letter-spacing: 1px;
-        padding: 9px;
-        font-size: 0.8em;
-}
     
     .id{
         font-size: 10px;
@@ -522,11 +511,7 @@ nav li{
         margin-left: 0;
     }
     
-    .status-p{
-        padding-left: 7%;
-    }
-    
-    .issued-on-p{
+    .status-p, .issued-on-p{
         padding-left: 7%;
     }
 }
