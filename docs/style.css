@@ -24,8 +24,7 @@ body{
     width: 80%;
     max-width: 1000px;
     min-width: 360px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
     padding: 1em;
 }
 
@@ -60,13 +59,10 @@ h1 strong{
 }
 
 #logo{
-    width: auto;
-    height: auto;
     max-height: 100px;
     max-width: 100px;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
     margin-bottom: -12px;
 }
         
@@ -242,9 +238,9 @@ nav li{
 }
 
 .dropdown-content a:hover {
-    border: 0.1px solid grey;
+    border-radius: 5px;
     cursor: default;
-    background-color: rgba(92,184,92, 0.1);
+    background-color: rgba(92,184,92, 0.2);
 }
 
 .show {
@@ -257,22 +253,19 @@ nav li{
     text-align: center;
     font-size: 0.8em;
     padding: 5px;
+    margin: -43px 18px 0 0;
     display: inline;
     float: right;
-    margin-top: -38px;
 }
 
 /*ISSUES*/
 
 .img{
-    width: auto;
-    height: auto;
     max-height: 80px;
     max-width: 80px;
-    margin-left: 20px;
+    margin: 0 0 -10px 20px;
     text-align: left;
     display: block;
-    margin-bottom: -30px;
 }
 
 .img-triangle{
@@ -383,14 +376,12 @@ nav li{
     display: inline;
     font-size: 12.5px;
     float: right;
-    margin-right: -20px;
-    margin-top: 15px
+    margin: 15px -20px 0 0;  
 }
 
 .severity{
     position: absolute;
-    margin-top: 10px;
-    margin-left: 10px;  
+    margin: 10px 0 0 10px;
 }
 
 .status-open{
@@ -495,7 +486,7 @@ nav li{
 
     #count{
         font-size: 0.7em;
-        margin-top: -55px;
+        margin: -55px 10px 0 0;
     }
     
     .delete-closed{
