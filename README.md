@@ -1,8 +1,8 @@
-# Issue-Track 
+# Issue-track 
 
-Issue Track is a simple issue tracker that makes logging and tracking issues/bugs a breeze. The application is written using Vanilla Javascript and Handlebars for templating.
+Issue-track is a simple issue tracker that makes logging and tracking issues/bugs a breeze. The application is written using Vanilla Javascript and Handlebars for templating.
 
-You can see Issue-Track in action at https://jrobind.github.io/Issue-track/  
+You can see Issue-track in action at https://jrobind.github.io/Issue-track/  
   
 
 ## Features
