@@ -22,28 +22,18 @@
     var util = {
         // creation of unique issue id - used to close and delete issues.
         uid: function() {
-            var id = Math.random()
-                .toString(36)
-                .substring(3);
-            
-            return id;
+            return Math.random().toString(36).substring(3);
         },
         createDate: function() {
-            var d = new Date(); 
-            var dString = d.toGMTString();
             // remove 'GMT' from end of date.
-            var sliceGmt = dString.slice(0, 25);
-            
-            return sliceGmt; 
+            return new Date().toGMTString().slice(0, 25); 
         },
         issueCount: function() {
-            var issues = storage.getStorage(); 
+            var issues = storage.getStorage();
+            var noIssues = 'Total Issues: ' + '<b>' + '0' + '<b>';
+            var issueNum = 'Total Issues: ' + '<b>' + issues.length + '<b>';
             // on start-up set counter equal to 0.
-            if (issues === null) {
-                app.countDiv.innerHTML = 'Total Issues: ' + '<b>' + '0' + '<b>';
-            } else {
-                app.countDiv.innerHTML = 'Total Issues: ' + '<b>' + issues.length + '<b>';
-            }
+            !issues.length ? app.countDiv.innerHTML = noIssues : app.countDiv.innerHTML = issueNum;
         }
     };
     
@@ -83,7 +73,7 @@
             if(filteredIssues) {
                 issues = filteredIssues;
             } else {
-                issues = storage.getStorage();
+                issues = app.getFilteredArray(this.filterEl.className, true);
             }
             
             // html template converted to Handlebars function.
@@ -137,7 +127,7 @@
             this.filterButton.addEventListener('click', this.dropdown.bind(this));
             
             for (var i = 0; i < this.filterId.length; i++) {
-                this.filterId[i].addEventListener('click', this.setFilter.bind(this));
+                this.filterId[i].addEventListener('click', this.findFilter.bind(this));
             }
             
             this.deleteClosedId.addEventListener('click', this.deleteClosed.bind(this));
@@ -260,7 +250,14 @@
                 return issue.status;
             });  
         },
-        getFilteredArray: function(type) {
+        checkType: function(check, filteredArray) {
+            if(!check) {
+                app.render(filteredArray);
+            } else {
+                return filteredArray;   
+            } 
+        },
+        getFilteredArray: function(type, check) {
             var issues = storage.getStorage();
             // object lookup for easy filter access
             var filters = {
@@ -269,87 +266,75 @@
                         return issue.status === false;
                     });
                     
-                    app.render(issues);    
+                    return app.checkType(check, issues);  
                 },
                 'closed': function() {
                     issues = issues.filter(function(issue) {
                         return issue.status === true;
                     });
                     
-                    app.render(issues);
+                    return app.checkType(check, issues); 
                 },
                 'all': function() {
-                    app.render(issues);  
+                    return app.checkType(check, issues);   
                 },
                 'low': function() {
                     issues = issues.filter(function(issue) {
                         return issue.severity === 'low';
                     });
                     
-                    app.render(issues);      
+                    return app.checkType(check, issues);     
                 },
                 'medium': function() {
                     issues = issues.filter(function(issue) {
                         return issue.severity === 'medium';
                     });
             
-                    app.render(issues); 
+                   return app.checkType(check, issues);  
                 },
                'high': function() {
                    issues = issues.filter(function(issue) {
                         return issue.severity === 'high';
                     });
                    
-                    app.render(issues); 
+                   return app.checkType(check, issues);  
                }
             };
-            // invoke the correct function
-            filters[type]();
-        }, 
-        setFilter: function(event) {
+
+            return filters[type]();
+        },
+        processFilter: function(filter, filterText) {
+            // set className to current filter.
+            app.elementFilter.className = filter;
+            // remove filter dropdown. 
+            app.dropdown();
+            // set filter dropdown text.
+            app.filterText.innerText = filterText;
+            // create filtered array
+            app.getFilteredArray(filter); 
+        },
+        findFilter: function(event) {
             // grab id name of click
             var type = event.target.id;
             
             var filterId = {
                 'seeOpen': function() {
-                     // set className to current filter.
-                    app.elementFilter.className = 'open';
-                    // remove filter dropdown. 
-                    app.dropdown();
-                    // set filter dropdown text.
-                    app.filterText.innerText = 'Status Open';
-                    // create filtered array
-                    app.getFilteredArray('open');
+                    app.processFilter('open', 'Status Open');
                 },
                 'seeClosed': function() {
-                    app.elementFilter.className = 'closed'; 
-                    app.dropdown();
-                    app.filterText.innerText = 'Status Closed';
-                    app.getFilteredArray('closed');
+                    app.processFilter('closed', 'Status Closed');
                 },
                 'seeAll': function() {
-                    app.elementFilter.className = 'all';
-                    app.dropdown();
-                    app.filterText.innerText = 'All';
-                    app.getFilteredArray('all');  
+                    app.processFilter('all', 'All');
                 },
                 'seeLow': function() {
-                    app.elementFilter.className = 'low';
-                    app.dropdown();
-                    app.filterText.innerText = 'Risk Low';
-                    app.getFilteredArray('low');
+                    app.processFilter('low', 'Risk Low');
                 },
                 'seeMedium': function() {
-                    app.elementFilter.className = "medium";
-                    app.dropdown();
-                    app.filterText.innerText = 'Risk Medium';
-                    app.getFilteredArray('medium');
+                    app.processFilter('medium', 'Risk Medium');
                 },
                 'seeHigh': function() {
-                    app.elementFilter.className = 'high';
-                    app.dropdown();
-                    app.filterText.innerText = 'Risk High';
-                    app.getFilteredArray('high');
+                    app.processFilter('high', 'Risk High');
                 }
             };
             
