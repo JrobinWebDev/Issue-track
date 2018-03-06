@@ -133,7 +133,7 @@
             // form submission listeners
             this.inputForm.addEventListener('submit', this.addIssue);
             
-            // filter listeners
+            // filter button listeners
             this.filterButton.addEventListener('click', this.dropdown.bind(this));
             
             for (var i = 0; i < this.filterId.length; i++) {
@@ -165,11 +165,13 @@
             }.bind(this));
         },
         dropdown: function() {
-            // toggle filter button dropdowns
-            this.dropdownContent.classList.toggle('show');
+            // show dropdown only if we have issues
+            if (storage.getStorage().length) {
+                this.dropdownContent.classList.toggle('show');   
+            }
         },
         removeDropdown: function(event) {
-            // remove dropdowns if user clicks anywhere on window
+            // remove dropdown if user clicks anywhere on window
             if(!event.target.matches('.drop-button')) {
                     this.dropdownContent.classList.remove('show');   
                }
@@ -231,7 +233,7 @@
             
             // check that we have issues and whether we have any closed
             closedIssues = this.checkForClosed(issues);
-            // if we do then run the animation and delete closed issues
+            // if we do, then run the animation and delete closed issues
             if (closedIssues) {
                 // add transition class to all issues
                 issueContainer.classList.add('delete-transition');
