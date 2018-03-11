@@ -2,13 +2,22 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+}
+
+html {
+    overflow-y: hidden;
+}
+
 body{
-    background: url('./watercolour.jpg') no-repeat center center fixed; 
+    background: url('.watercolour.jpg') no-repeat center center fixed; 
     background-size: auto;
     line-height: 1.5;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     margin: 0;
     padding: 0;
+    overflow-y: scroll;
 }
 
 .container{
@@ -17,8 +26,8 @@ body{
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
     width: 80%;
     max-width: 900px;
     min-width: 340px;
