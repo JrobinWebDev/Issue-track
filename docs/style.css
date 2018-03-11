@@ -11,7 +11,7 @@ html {
 }
 
 body{
-    background: url('.watercolour.jpg') no-repeat center center fixed; 
+    background: url('./watercolour.jpg') no-repeat center center fixed; 
     background-size: auto;
     line-height: 1.5;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
