@@ -217,16 +217,15 @@
         },
         deleteClosed: function() {
             var self = this;
-            var closedIssues;
+            var currentFilter = this.filterEl.className;
             var issueContainer = document.querySelector('.issue');
             var issues = storage.getStorage();
             
-            // check that we have issues and whether we have any closed
-            closedIssues = this.checkForClosed(issues);
-            // if we do, then run the animation and delete closed issues
-            if (closedIssues) {
-                // add transition class to all issues
-                issueContainer.classList.add('delete-transition');
+            // delete closed issues and run animation if present in current filter view
+            if (this.checkForClosed(issues)) {
+                if (this.checkForClosed(this.getFilteredArray(currentFilter, true))) {
+                    issueContainer.classList.add('delete-transition');  
+                } 
             
                 // decrement loop removes closed issues after transition.
                 setTimeout(function() {
@@ -245,10 +244,9 @@
             }
         },
         checkForClosed: function(issues) {
-            // check for any closed issues
             return issues.some(function(issue) {
                 return issue.status;
-            });  
+            });
         },
         checkType: function(check, filteredArray) {
             if(!check) {
