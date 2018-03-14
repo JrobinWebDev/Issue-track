@@ -6,18 +6,19 @@ html, body {
     height: 100%;
 }
 
-html {
-    overflow-y: hidden;
+html{
+    background: url('./watercolour.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 body{
-    background: url('./watercolour.jpg') no-repeat center center fixed; 
-    background-size: auto;
     line-height: 1.5;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     margin: 0;
     padding: 0;
-    overflow-y: scroll;
 }
 
 .container{
