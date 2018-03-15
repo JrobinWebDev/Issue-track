@@ -6,7 +6,7 @@
         initStorage: function() {
             var issues = [];
             // on start-up setup issues array.
-            if (localStorage.getItem('issues') === null ) {
+            if (!localStorage.getItem('issues')) {
                 localStorage.setItem('issues', JSON.stringify(issues));             
             }
         },
@@ -14,8 +14,7 @@
             localStorage.setItem('issues', JSON.stringify(issues));
         },
         getStorage: function() {
-            var issues = JSON.parse(localStorage.getItem('issues'));
-            return issues;
+            return JSON.parse(localStorage.getItem('issues'));
         }
     }; 
     
@@ -88,22 +87,17 @@
             util.issueCount();    
         },
         issue: function() {
-            var issueId = util.uid();
-            var statusText = 'Open';
-            var issueDate = util.createDate();
-            var status = false;
-            
             // creation of the issue object.
             var issue = 
                 {
-                    id: issueId,
+                    id: util.uid(),
                     category: this.issueCategory.value,
                     description: this.issueDesc.value,
                     severity: this.issueSeverity.value,
                     assignedTo: this.issueAssignedTo.value,
-                    statusText: statusText,
-                    date: issueDate,
-                    status: status
+                    statusText: 'Open',
+                    date: util.createDate(),
+                    status: false
                 };
             
             return issue;   
