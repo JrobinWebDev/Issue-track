@@ -7,7 +7,7 @@ html, body {
 }
 
 html{
-    background: url('./watercolour.jpg') no-repeat center center fixed; 
+    background: url('../images/watercolour.jpg') no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -368,16 +368,24 @@ nav li{
     background-color: rgba(217,83,79, 1);
 }
 
-.issue-closed-true{
+.issue-closed, .issue-closed-true{
     margin-left: auto;
-    background-color: rgba(92,184,92, 0.6);
     color: rgba(245, 245, 245, 1);
     width: 100px;
     padding: 11px;
     font-size: 12.5px;
-    border: 1px solid rgba(92,184,92, 0.6);
     border-radius: 5px;
-    cursor: pointer;  
+    cursor: pointer;    
+}
+
+.issue-closed{
+    background-color: rgba(92,184,92, 0.9);
+    border: 1px solid rgba(92,184,92, 0.9);
+}
+
+.issue-closed-true{
+    background-color: rgba(92,184,92, 0.6);
+    border: 1px solid rgba(92,184,92, 0.6);
 }
 
 .id{
