@@ -321,9 +321,17 @@ nav li{
     padding: 1.5em;
 }
 
-.category, .assigned, .status, .issued-on{
+.category, .status, .issued-on{
     margin-left: 8%;
     padding-right: 5px;
+}
+
+.assigned{
+    padding-right: 5px;
+}
+
+.assigned-p{
+    padding-left: 7%;
 }
 
 .description{
