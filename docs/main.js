@@ -201,7 +201,7 @@
         addClosingDate: function() {
             var issues = storage.getStorage(); 
             // add closing date to closed issues
-            issues.forEach(function(issue){
+            issues.forEach(function(issue) {
                 if (issue.statusText === 'Closed') {
                     issue.statusText = 'Closed on: ' + util.createDate(); 
                 }
@@ -212,14 +212,20 @@
         deleteClosed: function() {
             var self = this;
             var currentFilter = this.filterEl.className;
-            var issueContainer = document.querySelector('.issue');
             var issues = storage.getStorage();
             
             // delete closed issues and run animation if present in current filter view
             if (this.checkForClosed(issues)) {
-                if (this.checkForClosed(this.getFilteredArray(currentFilter, true))) {
-                    issueContainer.classList.add('delete-transition');  
-                } 
+                var filtered = this.getFilteredArray(currentFilter, true)
+
+                filtered.filter(function(issue) {
+                    if (issue.status === true) {
+                        return issue;
+                    }
+                }).forEach(function(issue) {
+                    // add transition class to each closed issue
+                    document.getElementById(issue.id.toString()).parentElement.classList.add('delete-transition');   
+                });
             
                 // decrement loop removes closed issues after transition.
                 setTimeout(function() {
