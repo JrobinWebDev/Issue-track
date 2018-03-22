@@ -21,7 +21,7 @@
     var util = {
         // creation of unique issue id - used to close and delete issues.
         uid: function() {
-            return Math.random().toString(36).substring(3);
+            return Math.random().toString(36).substring(9) + (new Date()).getTime().toString(36);
         },
         createDate: function() {
             // remove 'GMT' from end of date.
