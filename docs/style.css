@@ -338,28 +338,16 @@ nav li{
 }
 
 .issue-delete{
-    border-radius: 5px;
-    padding: 11px;
-    font-size: 12.5px;
-    letter-spacing: 1px;
     border: 1px solid rgba(217,83,79, 0.9);
     background-color: rgba(217,83,79, 0.9);
     margin-left: 30px;
     color: rgba(245, 245, 245, 1);
-    cursor: pointer;
 }
 
 .issue-closed{
-    margin-left: auto;
     background-color: rgba(92,184,92, 0.9);
-    color: rgba(245, 245, 245, 1);
-    width: 100px;
-    padding: 11px;
-    font-size: 12.5px;
-    letter-spacing: 1px;
     border: 1px solid rgba(92,184,92, 0.9);
-    border-radius: 5px;
-    cursor: pointer;    
+    margin-right: 20px;
 }
 
 .issue-closed:hover{
@@ -370,7 +358,7 @@ nav li{
     background-color: rgba(217,83,79, 1);
 }
 
-.issue-closed, .issue-closed-true{
+.issue-closed, .issue-closed-true, .issue-delete{
     margin-left: auto;
     color: rgba(245, 245, 245, 1);
     width: 100px;
@@ -380,14 +368,10 @@ nav li{
     cursor: pointer;    
 }
 
-.issue-closed{
-    background-color: rgba(92,184,92, 0.9);
-    border: 1px solid rgba(92,184,92, 0.9);
-}
-
 .issue-closed-true{
     background-color: rgba(92,184,92, 0.6);
     border: 1px solid rgba(92,184,92, 0.6);
+    margin-right: 20px;
 }
 
 .id{
@@ -428,7 +412,6 @@ nav li{
 }
 
 @media screen and (max-width: 860px) {
-    
     .issue-form select{
         width: 95%;
     }
@@ -473,18 +456,6 @@ nav li{
 }
 
 @media screen and (max-width: 550px) {
-    .issue-delete, .issue-closed, #statusButton:disabled{
-        width: 90px;
-        padding: 9px;
-        letter-spacing: 1px;
-        font-size: 0.8em;
-    }
-    
-    .issue-delete{
-        margin: auto;
-        margin-top: 5px;
-    }
-    
     .id{
         font-size: 10px;
         margin-top: 15px
@@ -497,7 +468,6 @@ nav li{
 }
 
 @media screen and (max-width: 500px) {
-    
     .issue-form select, #issueDescInput{
         width: 95%;
     }
@@ -516,11 +486,7 @@ nav li{
         font-size: 0.7em;
         margin: -55px 10px 0 0;
     }
-    
-    .delete-closed{
-        margin: auto;
-    }
-    
+
     .issue-content {
         font-size: 0.9em;
         margin: auto;
